@@ -5,7 +5,9 @@ VisualStudioVersion = 16.0.30413.136
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Model", "Model\Model.csproj", "{F52981DE-1821-4FC7-8C28-1F72D58B0843}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPFClient", "..\WPFClient\WPFClient.csproj", "{4F0096F4-6563-46EE-9484-CE264E647D73}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPFClient", "WPFClient\WPFClient.csproj", "{4F0096F4-6563-46EE-9484-CE264E647D73}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WordManager", "WordManager\WordManager.csproj", "{149B5803-CBF8-4BB6-A4D8-C6CBA72E784B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{4F0096F4-6563-46EE-9484-CE264E647D73}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4F0096F4-6563-46EE-9484-CE264E647D73}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4F0096F4-6563-46EE-9484-CE264E647D73}.Release|Any CPU.Build.0 = Release|Any CPU
+		{149B5803-CBF8-4BB6-A4D8-C6CBA72E784B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{149B5803-CBF8-4BB6-A4D8-C6CBA72E784B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{149B5803-CBF8-4BB6-A4D8-C6CBA72E784B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{149B5803-CBF8-4BB6-A4D8-C6CBA72E784B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
