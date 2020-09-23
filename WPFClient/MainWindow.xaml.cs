@@ -1,7 +1,11 @@
-﻿using System;
+﻿using Model;
+using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.IO;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -18,11 +22,139 @@ namespace WPFClient
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class MainWindow : Window, INotifyPropertyChanged
     {
         public MainWindow()
         {
             InitializeComponent();
+            DataContext = this;
         }
+
+        private ICommand calculate;
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        public void Notify(string name)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
+        }
+
+        public ICommand Calculate
+        {
+            get
+            {
+                if (calculate == null)
+                {
+                    calculate = new RelayCommand(param => CalculateMethod());
+                }
+                return calculate;
+            }
+        }
+
+        void CalculateMethod()
+        {
+            WordManager wordManager = new WordManager();
+
+            List<string> fixedInput = GetListFromText(InputText.ToLower());
+            var document = new Document() { Name = "TestDoc", Content = InputText.ToLower() };
+
+            var docs = wordManager.ReadAllDocuments();
+
+            foreach (var word in fixedInput)
+            {
+                TF tf = new TF(word, document);
+                tf.CalculateTF();
+                IDF idf = new IDF(docs, word);
+                idf.CalculateIDF();
+                TF_IDF tF_IDF = new TF_IDF(tf, idf);
+                tF_IDF.CalculateTF_IDF();
+                Words.Add(new ResultWord { Word = word, IDF = idf.IDFValue, TF = tf.TFValue, TF_IDF = tF_IDF.TF_IDFValue });
+            }
+            Words = Words.Where(a => a.IDF != 0 && a.TF != 0 && a.TF_IDF != 0).ToList();
+        }
+
+        List<string> GetListFromText(string inputText)
+        {
+            List<string> vs = new List<string>();
+            foreach (var item in inputText.Split(' '))
+            {
+                if (item != "," && item != "" && item != " " && item != "-" && !int.TryParse(item, out int res))
+                {
+                    vs.Add(item.Replace("!", "").Replace(".", "").Replace(",", ""));
+                }
+            }
+
+            return vs.GroupBy(a => a).Select(f => f.FirstOrDefault()).ToList();
+        }
+
+        public string InputText { get; set; }
+
+        List<ResultWord> words = new List<ResultWord>();
+        public List<ResultWord> Words { get { return words; } set { words = value; Notify("Words"); } }
+    }
+
+    public class ResultWord
+    {
+        public string Word { get; set; }
+        public double TF { get; set; }
+        public double IDF { get; set; }
+        public double TF_IDF { get; set; }
+    }
+
+    public class RelayCommand : ICommand
+    {
+        #region Fields
+
+        readonly Action<object> _execute;
+        readonly Predicate<object> _canExecute;
+
+        #endregion // Fields
+
+        #region Constructors
+
+        /// <summary>
+        /// Creates a new command that can always execute.
+        /// </summary>
+        /// <param name="execute">The execution logic.</param>
+        public RelayCommand(Action<object> execute)
+            : this(execute, null)
+        {
+        }
+
+        /// <summary>
+        /// Creates a new command.
+        /// </summary>
+        /// <param name="execute">The execution logic.</param>
+        /// <param name="canExecute">The execution status logic.</param>
+        public RelayCommand(Action<object> execute, Predicate<object> canExecute)
+        {
+            if (execute == null)
+                throw new ArgumentNullException("execute");
+
+            _execute = execute;
+            _canExecute = canExecute;
+        }
+
+        #endregion // Constructors
+
+        #region ICommand Members
+
+        public bool CanExecute(object parameters)
+        {
+            return _canExecute == null ? true : _canExecute(parameters);
+        }
+
+        public event EventHandler CanExecuteChanged
+        {
+            add { CommandManager.RequerySuggested += value; }
+            remove { CommandManager.RequerySuggested -= value; }
+        }
+
+        public void Execute(object parameters)
+        {
+            _execute(parameters);
+        }
+
+        #endregion // ICommand Members
     }
 }
