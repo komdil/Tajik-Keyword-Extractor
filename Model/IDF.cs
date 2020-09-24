@@ -28,7 +28,7 @@ namespace Model
                 return;
             }
 
-            IDFValue = Math.Log10(countOfDocuments / countOfDocumentsWhichContainsTermin);
+            IDFValue = Math.Log(countOfDocuments / countOfDocumentsWhichContainsTermin);
         }
     }
 }

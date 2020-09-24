@@ -53,6 +53,9 @@ namespace WPFClient
 
         void CalculateMethod()
         {
+            if (InputText == "")
+                return;
+
             WordManager wordManager = new WordManager();
 
             List<string> fixedInput = GetListFromText(InputText.ToLower());
@@ -70,7 +73,7 @@ namespace WPFClient
                 tF_IDF.CalculateTF_IDF();
                 Words.Add(new ResultWord { Word = word, IDF = idf.IDFValue, TF = tf.TFValue, TF_IDF = tF_IDF.TF_IDFValue });
             }
-            Words = Words.Where(a => a.IDF != 0 && a.TF != 0 && a.TF_IDF != 0).ToList();
+            Words = Words.Where(a => a.TF != 0).ToList();
         }
 
         List<string> GetListFromText(string inputText)
