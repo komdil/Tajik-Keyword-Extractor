@@ -2,19 +2,19 @@
 {
     public class Word
     {
-        public Word(string name, WordManager manager)
+        public Word(string value, WordManager manager)
         {
-            Name = name;
+            Value = value;
             WordManager = manager;
         }
 
         public WordManager WordManager { get; }
 
-        public string Name { get; set; }
+        public string Value { get; set; }
 
         public override string ToString()
         {
-            return Name;
+            return Value;
         }
     }
 }

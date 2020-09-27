@@ -1,6 +1,7 @@
 ﻿using Model.KEA;
 using System;
 using System.IO;
+using System.Linq;
 
 namespace TesterConsole
 {
@@ -11,8 +12,10 @@ namespace TesterConsole
             Console.WriteLine("Hello World!");
             var wordManager = new WordManager();
             var name = "Payom_MajlisiOli_20_01_2016.txt";
-            var content = File.ReadAllText("Data\\" + name);
-            var document = new Document(wordManager) { Name = name, Content = content };
+            var content = File.ReadAllText("TestData\\" + name);
+            var document = new Document(wordManager, content) { Name = name };
+            document.SplitSentenses();
+            document.Sentences.ToList().ForEach(s => s.SplitWords());
         }
     }
 }

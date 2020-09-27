@@ -2,11 +2,12 @@
 
 namespace Model.KEA
 {
-    public class Sentense
+    public class Sentence
     {
-        public Sentense(WordManager manager)
+        public Sentence(WordManager manager, string content)
         {
             WordManager = manager;
+            Content = content;
         }
 
         public WordManager WordManager { get; }
@@ -14,14 +15,14 @@ namespace Model.KEA
         public string Content { get; set; }
         public IEnumerable<Word> Words { get; set; }
 
+        public void SplitWords()
+        {
+            Words = WordManager.SplitWordsFromSentences(this);
+        }
+
         public override string ToString()
         {
             return Content;
         }
-    }
-
-    public enum SentenseType
-    {
-
     }
 }

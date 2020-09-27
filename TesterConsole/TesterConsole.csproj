@@ -9,25 +9,4 @@
     <ProjectReference Include="..\Model\Model.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <None Update="Data\Payom_MajlisiOli_20_01_2016.txt">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="Data\Payom_MajlisiOli_22_12_2016.txt">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="Data\Payom_MajlisiOli_22_12_2017.txt">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="Data\Payom_MajlisiOli_23_01_2015.txt">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="Data\Payom_MajlisiOli_26_12_2018.txt">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="Data\Payom_MajlisiOli_26_12_2019.txt">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-  </ItemGroup>
-
 </Project>
