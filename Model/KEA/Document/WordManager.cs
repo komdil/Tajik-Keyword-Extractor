@@ -2,11 +2,11 @@
 using System.IO;
 using System.Linq;
 
-namespace Model
+namespace Model.KEA
 {
-    public class WordManager
+    public static class WordManagerExtensions
     {
-        public IEnumerable<Document> ReadAllDocuments()
+        public static IEnumerable<Document> ReadAllDocuments(this WordManager wordManager)
         {
             List<Document> documents = new List<Document>();
 
@@ -16,7 +16,7 @@ namespace Model
             {
                 var name = file.Split('\\').Last();
                 var content = File.ReadAllText(file).ToLower();
-                documents.Add(new Document { Name = name, Content = content });
+                documents.Add(new Document(wordManager) { Name = name, Content = content });
             }
 
             return documents;

@@ -1,6 +1,6 @@
 ﻿using System.Linq;
 
-namespace Model
+namespace Model.KEA.TFIDF
 {
     public class TF
     {

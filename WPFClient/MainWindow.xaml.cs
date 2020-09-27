@@ -1,4 +1,6 @@
 ﻿using Model;
+using Model.KEA;
+using Model.KEA.TFIDF;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -59,7 +61,7 @@ namespace WPFClient
             WordManager wordManager = new WordManager();
 
             List<string> fixedInput = GetListFromText(InputText.ToLower());
-            var document = new Document() { Name = "TestDoc", Content = InputText.ToLower() };
+            var document = new Document(wordManager) { Name = "TestDoc", Content = InputText.ToLower() };
 
             var docs = wordManager.ReadAllDocuments();
 

@@ -1,4 +1,4 @@
-﻿namespace Model
+﻿namespace Model.KEA.TFIDF
 {
     public class TF_IDF
     {

@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System;
 
-namespace Model
+namespace Model.DataSet
 {
     public class WordDbContext : DbContext
     {

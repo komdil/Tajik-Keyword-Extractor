@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Model
+namespace Model.KEA.TFIDF
 {
     public class IDF
     {
