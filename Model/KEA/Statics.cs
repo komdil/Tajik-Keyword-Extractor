@@ -10,6 +10,6 @@ namespace Model.KEA
 
         public const string RemoveUnnassesarySpacesPattern = @"([\t ]*(\n)+[\t ]*)+";
 
-        public const string SentenceEndSymbols = @"!|:|\.|\?";
+        public const string SentenceEndSymbols = @"!|:|,|\.|\?";
     }
 }

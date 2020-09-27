@@ -17,9 +17,11 @@ namespace Model.KEA
             {
                 var name = file.Split('\\').Last();
                 var content = File.ReadAllText(file).ToLower();
-                documents.Add(new Document(wordManager, content) { Name = name, });
+                var doc = new Document(wordManager, content) { Name = name, };
+                doc.SplitSentenses();
+                doc.Sentences.ToList().ForEach(a => a.SplitWords());
+                documents.Add(doc);
             }
-
             return documents;
         }
 

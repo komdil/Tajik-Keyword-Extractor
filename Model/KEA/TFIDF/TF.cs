@@ -4,13 +4,13 @@ namespace Model.KEA.TFIDF
 {
     public class TF
     {
-        public TF(string termin, Document document)
+        public TF(Word termin, Document document)
         {
             Termin = termin;
             Document = document;
         }
 
-        public string Termin { get; set; }
+        public Word Termin { get; set; }
 
         public Document Document { get; set; }
 
@@ -18,19 +18,9 @@ namespace Model.KEA.TFIDF
 
         public void CalculateTF()
         {
-            double countOfWordInDocument = GetCountOfWordInDocument();
-            double countOfWordsInDcoument = GetCountWordsInDocument();
+            double countOfWordInDocument = Document.Sentences.SelectMany(a => a.Words).Count(a => a.Value.ToLower() == Termin.Value.ToLower());
+            double countOfWordsInDcoument = Document.Sentences.SelectMany(a => a.Words).Count();
             TFValue = countOfWordInDocument / countOfWordsInDcoument;
-        }
-
-        double GetCountOfWordInDocument()
-        {
-            return Document.Content.Split(' ').Count(w => w == Termin);
-        }
-
-        double GetCountWordsInDocument()
-        {
-            return Document.Content.Split(' ').Count();
         }
     }
 }

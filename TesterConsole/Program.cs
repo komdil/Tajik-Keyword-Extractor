@@ -16,6 +16,9 @@ namespace TesterConsole
             var document = new Document(wordManager, content) { Name = name };
             document.SplitSentenses();
             document.Sentences.ToList().ForEach(s => s.SplitWords());
+            File.WriteAllLines("sentences.txt", document.Sentences.Select(a => a.Content).ToArray());
+            var allwords = document.Sentences.SelectMany(a => a.Words).GroupBy(a => a.Value).Select(a => a.FirstOrDefault().Value.ToLower());
+            File.WriteAllLines("words.txt", allwords.ToArray());
         }
     }
 }

@@ -6,7 +6,7 @@ namespace Model.KEA.TFIDF
 {
     public class IDF
     {
-        public IDF(IEnumerable<Document> documents, string termin)
+        public IDF(IEnumerable<Document> documents, Word termin)
         {
             Documents = documents;
             Termin = termin;
@@ -14,14 +14,14 @@ namespace Model.KEA.TFIDF
 
         public IEnumerable<Document> Documents { get; set; }
 
-        public string Termin { get; set; }
+        public Word Termin { get; set; }
 
         public double IDFValue { get; set; }
 
         public void CalculateIDF()
         {
             double countOfDocuments = Documents.Count();
-            double countOfDocumentsWhichContainsTermin = Documents.Count(a => a.Content.Contains(Termin));
+            double countOfDocumentsWhichContainsTermin = Documents.Count(a => a.Content.Contains(Termin.Value));
             if (countOfDocumentsWhichContainsTermin == 0)
             {
                 IDFValue = 0;
