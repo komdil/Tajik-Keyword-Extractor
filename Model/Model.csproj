@@ -6,9 +6,15 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.8" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="3.1.8" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite.Core" Version="3.1.8" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.8" />
   </ItemGroup>
 
   <ItemGroup>
+    <None Update="DataSet\KEA.db">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="TestData\Payom_MajlisiOli_20_01_2016.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -27,6 +33,10 @@
     <None Update="TestData\Payom_MajlisiOli_26_12_2019.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="DataSet\SqlServer\" />
   </ItemGroup>
 
 </Project>
