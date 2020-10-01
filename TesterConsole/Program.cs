@@ -1,4 +1,5 @@
-﻿using Model.KEA;
+﻿using Model.DataSet.SqlServer;
+using Model.KEA;
 using Model.KEADataSet;
 using Model.KEADataSet.Sqlite;
 using System;
@@ -22,8 +23,17 @@ namespace TesterConsole
             //var allwords = document.Sentences.SelectMany(a => a.Words).GroupBy(a => a.Value).Select(a => a.FirstOrDefault().Value.ToLower());
             //File.WriteAllLines("words.txt", allwords.ToArray());
 
-            WordDbSqliteContext wordDbContext = new WordDbSqliteContext();
-            var allwords = wordDbContext.dictionary.ToList();
+            //WordDbSqliteContext wordDbContext = new WordDbSqliteContext();
+            //var allwords = wordDbContext.word.Where(s => s.dictionary_id == "2").ToList().GroupBy(g => g.word).Select(s => s.FirstOrDefault());
+            //SqlServerContext sqlServerContext = new SqlServerContext();
+            //foreach (var word in allwords)
+            //{
+            //    WordDataSet wordDataSet = new WordDataSet() { Guid = Guid.NewGuid() };
+            //    wordDataSet.WordValue = word.word;
+            //    wordDataSet.Info = word.article;
+            //    sqlServerContext.Add(wordDataSet);
+            //}
+            //sqlServerContext.SaveChanges();
         }
     }
 }
