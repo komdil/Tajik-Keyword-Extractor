@@ -2,6 +2,7 @@
 using Model.KEA;
 using Model.KEADataSet;
 using Model.KEADataSet.Sqlite;
+using Newtonsoft.Json;
 using System;
 using System.IO;
 using System.Linq;
@@ -23,6 +24,14 @@ namespace TesterConsole
             //var allwords = document.Sentences.SelectMany(a => a.Words).GroupBy(a => a.Value).Select(a => a.FirstOrDefault().Value.ToLower());
             //File.WriteAllLines("words.txt", allwords.ToArray());
 
+            SqlServerContext sqlServerContext = new SqlServerContext();
+            var words = sqlServerContext.Words.ToList();
+            var json = JsonConvert.SerializeObject(words, Formatting.Indented);
+            File.WriteAllText("dataset.json", json);
+        }
+
+        static void AddFromSqlite()
+        {
             //WordDbSqliteContext wordDbContext = new WordDbSqliteContext();
             //var allwords = wordDbContext.word.Where(s => s.dictionary_id == "2").ToList().GroupBy(g => g.word).Select(s => s.FirstOrDefault());
             //SqlServerContext sqlServerContext = new SqlServerContext();

@@ -12,6 +12,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Update="DataSet\Json\dataset.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="DataSet\KEA.db">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
