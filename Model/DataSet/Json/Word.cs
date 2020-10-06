@@ -11,5 +11,20 @@ namespace Model.DataSet.Json
         public string WordValue { get; set; }
 
         public string Info { get; set; }
+
+        public bool IsBandak()
+        {
+            return Info.ToLower().Contains("бандак");
+        }
+
+        public bool IsPeshoyand()
+        {
+            return Info.ToLower().Contains("пешоянд");
+        }
+
+        public bool IsJonishin()
+        {
+            return Info.ToLower().Contains("ҷонишин");
+        }
     }
 }

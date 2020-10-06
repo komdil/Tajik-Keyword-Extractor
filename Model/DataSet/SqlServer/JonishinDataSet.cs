@@ -1,8 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Text;
 
 namespace Model.DataSet.SqlServer
 {
-    public class PrefixDataSet
+    public class JonishinDataSet
     {
         public Guid Guid { get; set; }
         public string Value { get; set; }

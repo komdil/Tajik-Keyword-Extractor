@@ -1,10 +1,6 @@
-﻿using Model.DataSet.SqlServer;
-using Model.KEA;
-using Model.KEADataSet;
+﻿using Model.DataSet.Json;
+using Model.DataSet.SqlServer;
 using Model.KEADataSet.Sqlite;
-using Newtonsoft.Json;
-using System;
-using System.IO;
 using System.Linq;
 
 namespace TesterConsole
@@ -23,11 +19,6 @@ namespace TesterConsole
             //File.WriteAllLines("sentences.txt", document.Sentences.Select(a => a.Content).ToArray());
             //var allwords = document.Sentences.SelectMany(a => a.Words).GroupBy(a => a.Value).Select(a => a.FirstOrDefault().Value.ToLower());
             //File.WriteAllLines("words.txt", allwords.ToArray());
-
-            SqlServerContext sqlServerContext = new SqlServerContext();
-            var words = sqlServerContext.Words.ToList();
-            var json = JsonConvert.SerializeObject(words, Formatting.Indented);
-            File.WriteAllText("dataset.json", json);
         }
 
         static void AddFromSqlite()
@@ -43,6 +34,32 @@ namespace TesterConsole
             //    sqlServerContext.Add(wordDataSet);
             //}
             //sqlServerContext.SaveChanges();
+        }
+
+
+        static void Split()
+        {
+            SqlServerContext sqlServerContext = new SqlServerContext();
+            JsonContext jsonContext = new JsonContext();
+
+            var peshoyands = jsonContext.Words.Where(a => a.IsPeshoyand());
+            foreach (var item in peshoyands)
+            {
+                sqlServerContext.PeshoyandDataSets.Add(new PeshoyandDataSet() { Guid = item.Guid, Info = item.Info, Value = item.Info });
+            }
+
+            var jonishins = jsonContext.Words.Where(a => a.IsJonishin());
+            foreach (var item in jonishins)
+            {
+                sqlServerContext.JonishinDataSets.Add(new JonishinDataSet() { Guid = item.Guid, Info = item.Info, Value = item.Info });
+            }
+
+            var bandaks = jsonContext.Words.Where(a => a.IsBandak());
+            foreach (var item in bandaks)
+            {
+                sqlServerContext.BandakDataSets.Add(new BandakDataSet() { Guid = item.Guid, Info = item.Info, Value = item.Info });
+            }
+            sqlServerContext.SaveChanges();
         }
     }
 }

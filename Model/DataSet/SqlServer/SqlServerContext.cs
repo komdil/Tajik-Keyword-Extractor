@@ -9,7 +9,13 @@ namespace Model.DataSet.SqlServer
             Database.EnsureCreated();
         }
 
-        public DbSet<WordDataSet> Words { get; set; }
+        public DbSet<WordDataSet> WordsDataSet { get; set; }
+
+        public DbSet<BandakDataSet> BandakDataSets { get; set; }
+
+        public DbSet<JonishinDataSet> JonishinDataSets { get; set; }
+
+        public DbSet<PeshoyandDataSet> PeshoyandDataSets { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -18,6 +24,9 @@ namespace Model.DataSet.SqlServer
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<WordDataSet>().HasKey(a => a.Guid);
+            modelBuilder.Entity<BandakDataSet>().HasKey(a => a.Guid);
+            modelBuilder.Entity<JonishinDataSet>().HasKey(a => a.Guid);
+            modelBuilder.Entity<PeshoyandDataSet>().HasKey(a => a.Guid);
             base.OnModelCreating(modelBuilder);
         }
     }
