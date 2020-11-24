@@ -1,13 +1,11 @@
-﻿using Model;
+﻿using Model.DataSet.SqlServer;
 using Model.KEA;
 using Model.KEA.TFIDF;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.IO;
 using System.Linq;
 using System.Text;
-using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -19,20 +17,13 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace WPFClient
+namespace SubjectTesting
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
     public partial class MainWindow : Window, INotifyPropertyChanged
     {
-        public MainWindow()
-        {
-            InitializeComponent();
-            DataContext = this;
-        }
-
-        private ICommand calculate;
 
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -41,60 +32,53 @@ namespace WPFClient
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
         }
 
-        public ICommand Calculate
+        List<ResultWord> words = new List<ResultWord>();
+        public List<ResultWord> Words { get { return words; } set { words = value; Notify("Words"); } }
+
+        public MainWindow()
+        {
+            InitializeComponent();
+            DataContext = this;
+        }
+
+        private ICommand start;
+        public ICommand Start
         {
             get
             {
-                if (calculate == null)
+                if (start == null)
                 {
-                    calculate = new RelayCommand(param => CalculateMethod());
+                    start = new RelayCommand(param => StartMethod());
                 }
-                return calculate;
+                return start;
             }
         }
 
-        void CalculateMethod()
+        void StartMethod()
         {
-            if (InputText == "")
-                return;
-
-            List<string> fixedInput = GetListFromText(InputText.ToLower());
-            var document = new Document(InputText.ToLower()) { Name = "TestDoc" };
-            document.SplitSentenses();
-            document.Sentences.ToList().ForEach(a => a.SplitWords());
-            var docs = WordManagerDocumentExtensions.ReadAllDocuments();
-
-            foreach (var word in document.Sentences.SelectMany(a => a.Words))
-            {
-                TF tf = new TF(word, document);
-                tf.CalculateTF();
-                IDF idf = new IDF(docs, word);
-                idf.CalculateIDF();
-                TF_IDF tF_IDF = new TF_IDF(tf, idf);
-                tF_IDF.CalculateTF_IDF();
-                Words.Add(new ResultWord { Word = word.Value, IDF = idf.IDFValue, TF = tf.TFValue, TF_IDF = tF_IDF.TF_IDFValue });
-            }
-            Words = Words.Where(a => a.TF != 0).ToList();
+            SqlServerContext sqlServerContext = new SqlServerContext();
+            var himiyaContent = sqlServerContext.BookDataSets.FirstOrDefault(s => s.Name == "5_TXT.pdf");
+            var allDocuments = GetDocuments(sqlServerContext);
+            var document = new Document(himiyaContent.Content);
         }
 
-        List<string> GetListFromText(string inputText)
+        IEnumerable<Document> GetDocuments(SqlServerContext sqlServerContext)
         {
-            List<string> vs = new List<string>();
-            foreach (var item in inputText.Split(' '))
+            List<Document> documents = new List<Document>();
+            foreach (var item in sqlServerContext.BookDataSets.ToList())
             {
-                if (item != "," && item != "" && item != " " && item != "-" && !int.TryParse(item, out int res))
+                var document = new Document(item.Content);
+                document.SplitSentenses();
+                foreach (var sen in document.Sentences)
                 {
-                    vs.Add(item.Replace("!", "").Replace(".", "").Replace(",", ""));
+                    sen.SplitWords();
+                    sen.NormalizeWords(sqlServerContext);
                 }
+                documents.Add(document);
             }
 
-            return vs.GroupBy(a => a).Select(f => f.FirstOrDefault()).ToList();
+            return documents;
         }
-
-        public string InputText { get; set; }
-
-        List<ResultWord> words = new List<ResultWord>();
-        public List<ResultWord> Words { get { return words; } set { words = value; Notify("Words"); } }
     }
 
     public class ResultWord

@@ -17,6 +17,8 @@ namespace Model.DataSet.SqlServer
 
         public DbSet<PeshoyandDataSet> PeshoyandDataSets { get; set; }
 
+        public DbSet<BookDataSet> BookDataSets { get; set; }
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlServer("Server=localhost;Database=KEA;Trusted_Connection=True;");
@@ -27,6 +29,7 @@ namespace Model.DataSet.SqlServer
             modelBuilder.Entity<BandakDataSet>().HasKey(a => a.Guid);
             modelBuilder.Entity<JonishinDataSet>().HasKey(a => a.Guid);
             modelBuilder.Entity<PeshoyandDataSet>().HasKey(a => a.Guid);
+            modelBuilder.Entity<BookDataSet>().HasKey(a => a.Guid);
             base.OnModelCreating(modelBuilder);
         }
     }

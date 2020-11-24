@@ -4,23 +4,20 @@ namespace Model.KEA
 {
     public class Document
     {
-        public Document(WordManager manager, string content)
+        public Document(string content)
         {
-            WordManager = manager;
-            Content = manager.RemoveUnnassesarySpaces(content);
+            Content = WordManager.RemoveUnnassesarySpaces(content);
         }
 
         public string Name { get; set; }
 
         public string Content { get; set; }
 
-        public WordManager WordManager { get; }
-
         public IEnumerable<Sentence> Sentences { get; set; }
 
         public void SplitSentenses()
         {
-            Sentences = WordManager.SplitSentencesFromDoc(this);
+            Sentences = WordManagerDocumentExtensions.SplitSentencesFromDoc(this);
         }
 
         public override string ToString()

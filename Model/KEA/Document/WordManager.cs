@@ -7,7 +7,7 @@ namespace Model.KEA
 {
     public static class WordManagerDocumentExtensions
     {
-        public static IEnumerable<Document> ReadAllDocuments(this WordManager wordManager)
+        public static IEnumerable<Document> ReadAllDocuments()
         {
             List<Document> documents = new List<Document>();
 
@@ -17,7 +17,7 @@ namespace Model.KEA
             {
                 var name = file.Split('\\').Last();
                 var content = File.ReadAllText(file).ToLower();
-                var doc = new Document(wordManager, content) { Name = name, };
+                var doc = new Document(content) { Name = name, };
                 doc.SplitSentenses();
                 doc.Sentences.ToList().ForEach(a => a.SplitWords());
                 documents.Add(doc);
@@ -25,13 +25,13 @@ namespace Model.KEA
             return documents;
         }
 
-        public static IEnumerable<Sentence> SplitSentencesFromDoc(this WordManager wordManager, Document document)
+        public static IEnumerable<Sentence> SplitSentencesFromDoc(Document document)
         {
             List<Sentence> sentenceInstanses = new List<Sentence>();
             var sentences = Regex.Split(document.Content, Statics.SplitSentensePattern).Where(a => a != "");
             foreach (var sentense in sentences)
             {
-                sentenceInstanses.Add(new Sentence(wordManager, sentense));
+                sentenceInstanses.Add(new Sentence(sentense));
             }
 
             return sentenceInstanses;

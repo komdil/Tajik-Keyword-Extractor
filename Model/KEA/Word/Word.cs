@@ -2,13 +2,10 @@
 {
     public class Word
     {
-        public Word(string value, WordManager manager)
+        public Word(string value)
         {
             Value = value;
-            WordManager = manager;
         }
-
-        public WordManager WordManager { get; }
 
         public string Value { get; set; }
 
