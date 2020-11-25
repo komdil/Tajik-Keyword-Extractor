@@ -1,5 +1,6 @@
 ﻿using iTextSharp.text.pdf;
 using iTextSharp.text.pdf.parser;
+using Model.KEA.TextNormilizer;
 using System.Linq;
 using System.Text;
 
@@ -25,7 +26,7 @@ namespace Model.KEA
                 strText = strText + s;
                 reader.Close();
             }
-            strText = KEAGlobal.LanguageManager.RemoveUnnassesarySpaces(strText);
+            strText = KEAGlobal.TextnormilizerManager.RemoveUnnassesarySpaces(strText);
             return strText;
         }
 
@@ -52,12 +53,5 @@ namespace Model.KEA
 
             return text;
         }
-    }
-
-    public class ReplaceMent
-    {
-        public string ReplaceFrom { get; set; }
-
-        public string ReplaceTo { get; set; }
     }
 }

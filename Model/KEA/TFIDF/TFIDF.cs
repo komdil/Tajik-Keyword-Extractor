@@ -2,21 +2,19 @@
 {
     public class TF_IDF
     {
-        public TF_IDF(TF tF, IDF iDF)
+        public TF_IDF(double tF, double iDF)
         {
             TF = tF;
             IDF = iDF;
         }
 
-        public TF TF { get; set; }
+        public double TF { get; set; }
 
-        public IDF IDF { get; set; }
+        public double IDF { get; set; }
 
-        public double TF_IDFValue { get; set; }
-
-        public void CalculateTF_IDF()
+        public double CalculateTF_IDF()
         {
-            TF_IDFValue = TF.TFValue * IDF.IDFValue;
+            return TF * IDF;
         }
     }
 }

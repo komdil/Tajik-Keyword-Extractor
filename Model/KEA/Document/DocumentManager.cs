@@ -5,14 +5,9 @@ using System.Text.RegularExpressions;
 
 namespace Model.KEA.Document
 {
-    public class DocumentManager : LanguageManager
+    public class DocumentManager 
     {
-        public DocumentManager(IContext context) : base(context)
-        {
-
-        }
-
-        public IEnumerable<Sentence> SplitSentencesFromDoc(Document document)
+        public List<Sentence> SplitSentencesFromDoc(Document document)
         {
             List<Sentence> sentenceInstanses = new List<Sentence>();
             var sentences = Regex.Split(document.Content, Statics.SplitSentensePattern).Where(a => a != "");

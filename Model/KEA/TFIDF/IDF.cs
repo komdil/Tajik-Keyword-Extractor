@@ -16,19 +16,13 @@ namespace Model.KEA.TFIDF
 
         public Word Termin { get; set; }
 
-        public double IDFValue { get; set; }
-
-        public void CalculateIDF()
+        public double CalculateIDF()
         {
             double countOfDocuments = Documents.Count();
             double countOfDocumentsWhichContainsTermin = Documents.Count(a => a.Content.Contains(Termin.Value));
             if (countOfDocumentsWhichContainsTermin == 0)
-            {
-                IDFValue = 0;
-                return;
-            }
-
-            IDFValue = Math.Log(countOfDocuments / countOfDocumentsWhichContainsTermin);
+                return 0;
+            return Math.Log(countOfDocuments / countOfDocumentsWhichContainsTermin);
         }
     }
 }

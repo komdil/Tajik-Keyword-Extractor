@@ -69,10 +69,8 @@ namespace SubjectTesting
             foreach (var item in sqlServerContext.BookDataSets.ToList())
             {
                 var document = new Document(item.Content);
-                document.SplitSentenses();
                 foreach (var sen in document.Sentences)
                 {
-                    sen.SplitWords();
                     sen.NormalizeWords();
                 }
                 documents.Add(document);

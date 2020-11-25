@@ -10,16 +10,12 @@ namespace Model.KEA
         public Sentence(string content)
         {
             Content = content;
+            Words = KEAGlobal.SentenseManager.SplitWordsFromSentences(this).ToList();
         }
 
         public SentenseType SentenseType { get; set; }
         public string Content { get; set; }
         public List<Word> Words { get; set; }
-
-        public void SplitWords()
-        {
-            Words = KEAGlobal.SentenseManager.SplitWordsFromSentences(this).ToList();
-        }
 
         public override string ToString()
         {

@@ -6,7 +6,7 @@ using System.Text.RegularExpressions;
 
 namespace Model.KEA
 {
-    public class SentenseManager : DocumentManager
+    public class SentenseManager : KEAManager
     {
         public SentenseManager(IContext context) : base(context)
         {

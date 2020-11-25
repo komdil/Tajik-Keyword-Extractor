@@ -61,19 +61,15 @@ namespace WPFClient
 
             List<string> fixedInput = GetListFromText(InputText.ToLower());
             var document = new Document(InputText.ToLower()) { Name = "TestDoc" };
-            document.SplitSentenses();
-            document.Sentences.ToList().ForEach(a => a.SplitWords());
             var docs = new List<Document>();
 
             foreach (var word in document.Sentences.SelectMany(a => a.Words))
             {
                 TF tf = new TF(word, document);
-                tf.CalculateTF();
                 IDF idf = new IDF(docs, word);
-                idf.CalculateIDF();
-                TF_IDF tF_IDF = new TF_IDF(tf, idf);
+                TF_IDF tF_IDF = new TF_IDF(tf.CalculateTF(), idf.CalculateIDF());
                 tF_IDF.CalculateTF_IDF();
-                Words.Add(new ResultWord { Word = word.Value, IDF = idf.IDFValue, TF = tf.TFValue, TF_IDF = tF_IDF.TF_IDFValue });
+                // Words.Add(new ResultWord { Word = word.Value, IDF = idf.IDFValue, TF = tf.TFValue, TF_IDF = tF_IDF.TF_IDFValue });
             }
             Words = Words.Where(a => a.TF != 0).ToList();
         }

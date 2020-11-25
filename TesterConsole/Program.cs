@@ -13,17 +13,10 @@ namespace TesterConsole
     {
         static void Main(string[] args)
         {
-            var readBook = @"D:\master degree\master\MAQOLA2\IDF\11_TXT.pdf";
-            PDFHelper pDFHelper = new PDFHelper();
-            var text = pDFHelper.ReadPdfFile(readBook);
-            var sqlContext = new SqlServerContext();
-            var doc = new Document(text);
-            doc.SplitSentenses();
-            foreach (var item in doc.Sentences)
-            {
-                item.SplitWords();
-                item.NormalizeWords();
-            }
+            JsonContext jsonContext = new JsonContext();
+            KEAGlobal.InitiateKEAGlobal(jsonContext);
+            var myTestText = "Имрӯз ҳаво гарм аст. Дирӯз ҳаво ин қадар гарм сахт гарм набуд";
+            var words = KEAGlobal.KEAManager.GetSimpleKeywords(myTestText);
         }
 
         private static void Logger_OnLog(string log)

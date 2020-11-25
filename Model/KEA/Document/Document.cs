@@ -6,19 +6,15 @@ namespace Model.KEA.Document
     {
         public Document(string content)
         {
-            Content = KEAGlobal.DocumentManager.RemoveUnnassesarySpaces(content);
+            Content = KEAGlobal.TextnormilizerManager.RemoveUnnassesarySpaces(content);
+            Sentences = KEAGlobal.DocumentManager.SplitSentencesFromDoc(this);
         }
 
         public string Name { get; set; }
 
         public string Content { get; set; }
 
-        public IEnumerable<Sentence> Sentences { get; set; }
-
-        public void SplitSentenses()
-        {
-            Sentences = KEAGlobal.DocumentManager.SplitSentencesFromDoc(this);
-        }
+        public List<Sentence> Sentences { get; set; }
 
         public override string ToString()
         {

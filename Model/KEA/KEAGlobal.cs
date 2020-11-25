@@ -1,8 +1,8 @@
 ﻿using Model.DataSet;
 using Model.KEA.Document;
+using Model.KEA.TextNormilizer;
+using Model.KEA.TFIDF;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Model.KEA
 {
@@ -31,17 +31,17 @@ namespace Model.KEA
             }
         }
 
-        static LanguageManager languageManager;
-        public static LanguageManager LanguageManager
+        static KEAManager keaManager;
+        public static KEAManager KEAManager
         {
             get
             {
-                if (languageManager == null)
+                if (keaManager == null)
                 {
                     CheckInitiateStatus();
-                    languageManager = new LanguageManager(Context);
+                    keaManager = new KEAManager(Context);
                 }
-                return languageManager;
+                return keaManager;
             }
         }
 
@@ -67,7 +67,7 @@ namespace Model.KEA
                 if (documentManager == null)
                 {
                     CheckInitiateStatus();
-                    documentManager = new DocumentManager(Context);
+                    documentManager = new DocumentManager();
                 }
                 return documentManager;
             }
@@ -84,6 +84,35 @@ namespace Model.KEA
                     sentenseManager = new SentenseManager(Context);
                 }
                 return sentenseManager;
+            }
+        }
+
+        static TFIDFManager tFIDFManager;
+        public static TFIDFManager TFIDFManager
+        {
+            get
+            {
+                if (tFIDFManager == null)
+                {
+                    CheckInitiateStatus();
+                    tFIDFManager = new TFIDFManager();
+                }
+                return tFIDFManager;
+            }
+        }
+
+
+        static TextnormilizerManager textnormilizerManager;
+        public static TextnormilizerManager TextnormilizerManager
+        {
+            get
+            {
+                if (textnormilizerManager == null)
+                {
+                    CheckInitiateStatus();
+                    textnormilizerManager = new TextnormilizerManager();
+                }
+                return textnormilizerManager;
             }
         }
     }
