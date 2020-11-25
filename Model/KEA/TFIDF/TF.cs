@@ -4,7 +4,7 @@ namespace Model.KEA.TFIDF
 {
     public class TF
     {
-        public TF(Word termin, Document document)
+        public TF(Word termin, Document.Document document)
         {
             Termin = termin;
             Document = document;
@@ -12,7 +12,7 @@ namespace Model.KEA.TFIDF
 
         public Word Termin { get; set; }
 
-        public Document Document { get; set; }
+        public Document.Document Document { get; set; }
 
         public double TFValue { get; set; }
 

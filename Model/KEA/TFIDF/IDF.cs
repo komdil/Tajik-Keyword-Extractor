@@ -6,13 +6,13 @@ namespace Model.KEA.TFIDF
 {
     public class IDF
     {
-        public IDF(IEnumerable<Document> documents, Word termin)
+        public IDF(IEnumerable<Document.Document> documents, Word termin)
         {
             Documents = documents;
             Termin = termin;
         }
 
-        public IEnumerable<Document> Documents { get; set; }
+        public IEnumerable<Document.Document> Documents { get; set; }
 
         public Word Termin { get; set; }
 

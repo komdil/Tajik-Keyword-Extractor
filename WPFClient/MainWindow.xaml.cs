@@ -1,5 +1,6 @@
 ﻿using Model;
 using Model.KEA;
+using Model.KEA.Document;
 using Model.KEA.TFIDF;
 using System;
 using System.Collections.Generic;
@@ -62,7 +63,7 @@ namespace WPFClient
             var document = new Document(InputText.ToLower()) { Name = "TestDoc" };
             document.SplitSentenses();
             document.Sentences.ToList().ForEach(a => a.SplitWords());
-            var docs = WordManagerDocumentExtensions.ReadAllDocuments();
+            var docs = new List<Document>();
 
             foreach (var word in document.Sentences.SelectMany(a => a.Words))
             {

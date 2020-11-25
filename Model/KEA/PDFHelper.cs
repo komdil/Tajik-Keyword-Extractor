@@ -25,7 +25,7 @@ namespace Model.KEA
                 strText = strText + s;
                 reader.Close();
             }
-            strText = WordManager.RemoveUnnassesarySpaces(strText);
+            strText = KEAGlobal.LanguageManager.RemoveUnnassesarySpaces(strText);
             return strText;
         }
 

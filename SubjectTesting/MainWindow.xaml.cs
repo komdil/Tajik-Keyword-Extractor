@@ -1,5 +1,6 @@
 ﻿using Model.DataSet.SqlServer;
 using Model.KEA;
+using Model.KEA.Document;
 using Model.KEA.TFIDF;
 using System;
 using System.Collections.Generic;
@@ -72,7 +73,7 @@ namespace SubjectTesting
                 foreach (var sen in document.Sentences)
                 {
                     sen.SplitWords();
-                    sen.NormalizeWords(sqlServerContext);
+                    sen.NormalizeWords();
                 }
                 documents.Add(document);
             }

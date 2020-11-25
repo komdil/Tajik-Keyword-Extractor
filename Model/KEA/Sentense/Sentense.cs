@@ -18,7 +18,7 @@ namespace Model.KEA
 
         public void SplitWords()
         {
-            Words = WordManagerSentenseExtensions.SplitWordsFromSentences(this).ToList();
+            Words = KEAGlobal.SentenseManager.SplitWordsFromSentences(this).ToList();
         }
 
         public override string ToString()
@@ -26,9 +26,9 @@ namespace Model.KEA
             return Content;
         }
 
-        public void NormalizeWords(SqlServerContext context)
+        public void NormalizeWords()
         {
-            WordManagerSentenseExtensions.NormalizeWords(Words, context, this);
+            KEAGlobal.SentenseManager.NormalizeWords(Words, this);
         }
     }
 }

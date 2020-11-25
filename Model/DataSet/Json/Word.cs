@@ -4,27 +4,27 @@ using System.Text;
 
 namespace Model.DataSet.Json
 {
-    public class Word
+    public class Word : IWordsDataSet
     {
         public Guid Guid { get; set; }
 
-        public string WordValue { get; set; }
+        public string Content { get; set; }
 
-        public string Info { get; set; }
+        public string ContentInfo { get; set; }
 
         public bool IsBandak()
         {
-            return Info.ToLower().Contains("бандак");
+            return ContentInfo.ToLower().Contains("бандак");
         }
 
         public bool IsPeshoyand()
         {
-            return Info.ToLower().Contains("пешоянд");
+            return ContentInfo.ToLower().Contains("пешоянд");
         }
 
         public bool IsJonishin()
         {
-            return Info.ToLower().Contains("ҷонишин");
+            return ContentInfo.ToLower().Contains("ҷонишин");
         }
     }
 }

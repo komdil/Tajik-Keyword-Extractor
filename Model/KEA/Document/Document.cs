@@ -1,12 +1,12 @@
 ﻿using System.Collections.Generic;
 
-namespace Model.KEA
+namespace Model.KEA.Document
 {
     public class Document
     {
         public Document(string content)
         {
-            Content = WordManager.RemoveUnnassesarySpaces(content);
+            Content = KEAGlobal.DocumentManager.RemoveUnnassesarySpaces(content);
         }
 
         public string Name { get; set; }
@@ -17,7 +17,7 @@ namespace Model.KEA
 
         public void SplitSentenses()
         {
-            Sentences = WordManagerDocumentExtensions.SplitSentencesFromDoc(this);
+            Sentences = KEAGlobal.DocumentManager.SplitSentencesFromDoc(this);
         }
 
         public override string ToString()

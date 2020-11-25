@@ -1,27 +1,34 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Model.DataSet.SqlServer
 {
-    public class SqlServerContext : DbContext
+    public class SqlServerContext : DbContext, IContext
     {
         public SqlServerContext()
         {
             Database.EnsureCreated();
         }
 
-        public DbSet<WordDataSet> WordsDataSet { get; set; }
+        public List<IWordsDataSet> Bandaks { get => GetEntities<BookDataSet>().Cast<IWordsDataSet>().ToList(); }
 
-        public DbSet<BandakDataSet> BandakDataSets { get; set; }
+        public List<IWordsDataSet> Jonishins { get => GetEntities<JonishinDataSet>().Cast<IWordsDataSet>().ToList(); }
 
-        public DbSet<JonishinDataSet> JonishinDataSets { get; set; }
+        public List<IWordsDataSet> Peshoyands { get => GetEntities<PeshoyandDataSet>().Cast<IWordsDataSet>().ToList(); }
 
-        public DbSet<PeshoyandDataSet> PeshoyandDataSets { get; set; }
+        public List<BookDataSet> BookDataSets { get => GetEntities<BookDataSet>().ToList(); }
 
-        public DbSet<BookDataSet> BookDataSets { get; set; }
+        public List<IWordsDataSet> Words { get => GetEntities<WordDataSet>().Cast<IWordsDataSet>().ToList(); }
+
+        public IQueryable<T> GetEntities<T>() where T : class
+        {
+            return Set<T>();
+        }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("Server=localhost;Database=KEA;Trusted_Connection=True;");
+            optionsBuilder.UseSqlServer(@"Server=DESKTOP-C7K0FSC;Database=KEA;Trusted_Connection=True;");
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

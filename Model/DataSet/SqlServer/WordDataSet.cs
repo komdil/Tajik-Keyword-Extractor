@@ -2,12 +2,12 @@
 
 namespace Model.DataSet.SqlServer
 {
-    public class WordDataSet
+    public class WordDataSet : IWordsDataSet
     {
         public Guid Guid { get; set; }
 
-        public string WordValue { get; set; }
+        public string Content { get; set; }
 
-        public string Info { get; set; }
+        public string ContentInfo { get; set; }
     }
 }

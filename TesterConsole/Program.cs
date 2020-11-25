@@ -1,6 +1,7 @@
 ﻿using Model.DataSet.Json;
 using Model.DataSet.SqlServer;
 using Model.KEA;
+using Model.KEA.Document;
 using Model.KEADataSet.Sqlite;
 using System;
 using System.IO;
@@ -12,26 +13,24 @@ namespace TesterConsole
     {
         static void Main(string[] args)
         {
-            var readBook = @"C:\Users\Owner\Desktop\master\MAQOLA2\IDF\khim.pdf";
+            var readBook = @"D:\master degree\master\MAQOLA2\IDF\11_TXT.pdf";
             PDFHelper pDFHelper = new PDFHelper();
             var text = pDFHelper.ReadPdfFile(readBook);
-            //var sqlContext = new SqlServerContext();
-            //var book = sqlContext.BookDataSets.FirstOrDefault(s => s.Name == "11_FIZIKA.pdf");
-            //book.Content = book.Content.Replace("Ч,", "Ҷ");
-            //book.Content = book.Content.Replace("Ч,", "Ҷ");
-            //sqlContext.SaveChanges();
-        }
-
-        static void Dpe()
-        {
             var sqlContext = new SqlServerContext();
-            var txtContent = sqlContext.BookDataSets.FirstOrDefault(s => s.Name == "5_TXT.pdf");
-            var doc = new Document(txtContent.Content);
+            var doc = new Document(text);
             doc.SplitSentenses();
             foreach (var item in doc.Sentences)
             {
                 item.SplitWords();
-                item.NormalizeWords(sqlContext);
+                item.NormalizeWords();
+            }
+        }
+
+        private static void Logger_OnLog(string log)
+        {
+            using (StreamWriter wr = new StreamWriter("unknown.txt", true))
+            {
+                wr.WriteLine(log);
             }
         }
 
@@ -59,8 +58,8 @@ namespace TesterConsole
             foreach (var word in allwords)
             {
                 WordDataSet wordDataSet = new WordDataSet() { Guid = Guid.NewGuid() };
-                wordDataSet.WordValue = word.word;
-                wordDataSet.Info = word.article;
+                wordDataSet.Content = word.word;
+                wordDataSet.ContentInfo = word.article;
                 sqlServerContext.Add(wordDataSet);
             }
             sqlServerContext.SaveChanges();
@@ -75,31 +74,36 @@ namespace TesterConsole
             var peshoyands = jsonContext.Words.Where(a => a.IsPeshoyand());
             foreach (var item in peshoyands)
             {
-                sqlServerContext.PeshoyandDataSets.Add(new PeshoyandDataSet() { Guid = item.Guid, Info = item.Info, Value = item.WordValue });
+                sqlServerContext.Add(new PeshoyandDataSet() { Guid = item.Guid, ContentInfo = item.ContentInfo, Content = item.Content });
             }
 
             var jonishins = jsonContext.Words.Where(a => a.IsJonishin());
             foreach (var item in jonishins)
             {
-                sqlServerContext.JonishinDataSets.Add(new JonishinDataSet() { Guid = item.Guid, Info = item.Info, Value = item.WordValue });
+                sqlServerContext.Add(new JonishinDataSet() { Guid = item.Guid, ContentInfo = item.ContentInfo, Content = item.Content });
             }
 
             var bandaks = jsonContext.Words.Where(a => a.IsBandak());
             foreach (var item in bandaks)
             {
-                sqlServerContext.BandakDataSets.Add(new BandakDataSet() { Guid = item.Guid, Info = item.Info, Value = item.WordValue });
+                sqlServerContext.Add(new BandakDataSet() { Guid = item.Guid, ContentInfo = item.ContentInfo, Content = item.Content });
             }
             sqlServerContext.SaveChanges();
 
 
+            int count = 0;
             var allwords = jsonContext.Words.Where(a => !a.IsBandak() && !a.IsJonishin() && !a.IsPeshoyand());
             foreach (var item in allwords)
             {
-                sqlServerContext.WordsDataSet.Add(new WordDataSet() { Guid = item.Guid, Info = item.Info, WordValue = item.WordValue });
+                if (count > 300)
+                {
+                    sqlServerContext.SaveChanges();
+                    count = 0;
+                }
+                sqlServerContext.Add(new WordDataSet() { Guid = item.Guid, ContentInfo = item.ContentInfo, Content = item.Content });
+                count++;
             }
             sqlServerContext.SaveChanges();
-
-
             return sqlServerContext;
         }
     }
