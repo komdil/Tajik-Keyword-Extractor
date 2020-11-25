@@ -10,7 +10,7 @@ namespace Model.KEA.TFIDF
             List<TFIDFView> tFIDFViews = new List<TFIDFView>();
             var wordsOfDocumentToCalculate = documentToCalculate.Sentences.SelectMany(s => s.Words).ToList();
 
-            foreach (var wordToCalculate in wordsOfDocumentToCalculate)
+            foreach (var wordToCalculate in wordsOfDocumentToCalculate.GroupBy(s => s.Value).Select(s => s.FirstOrDefault()))
             {
                 TF tF = new TF(wordToCalculate, documentToCalculate);
                 double tFValue = tF.CalculateTF();

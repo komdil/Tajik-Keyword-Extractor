@@ -31,7 +31,8 @@ namespace Model.KEA
         {
             var document = new Document.Document(text);
             document.Sentences.ForEach(s => s.NormalizeWords());
-            return document.Sentences.SelectMany(s => s.Words.Select(s => s.Value)).ToList();
+            var tfIdf = KEAGlobal.TFIDFManager.CalculateTFIDF(new List<Document.Document> { document }, document).OrderByDescending(s => s.TF_IDF).ThenByDescending(s => s.TF).ThenByDescending(s => s.IDF);
+            return tfIdf.Select(s => s.Word).ToList();
         }
     }
 }

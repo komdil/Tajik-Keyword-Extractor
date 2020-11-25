@@ -13,5 +13,10 @@ namespace Model.KEA.TFIDF
         public double IDF { get; set; }
 
         public double TF_IDF { get; set; }
+
+        public override string ToString()
+        {
+            return Word;
+        }
     }
 }
