@@ -49,6 +49,7 @@ namespace StopWordMaker
             this.button1.TabIndex = 0;
             this.button1.Text = "Конверт=>";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // button2
             // 
@@ -58,6 +59,7 @@ namespace StopWordMaker
             this.button2.TabIndex = 1;
             this.button2.Text = "Сабт кардан";
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // listBox1
             // 
@@ -103,6 +105,7 @@ namespace StopWordMaker
             this.button3.TabIndex = 6;
             this.button3.Text = "Аз файл";
             this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // button4
             // 
@@ -112,6 +115,7 @@ namespace StopWordMaker
             this.button4.TabIndex = 7;
             this.button4.Text = "Хориҷ";
             this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
             // button5
             // 
@@ -121,6 +125,7 @@ namespace StopWordMaker
             this.button5.TabIndex = 8;
             this.button5.Text = "Нав";
             this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.button5_Click);
             // 
             // button6
             // 
@@ -130,6 +135,7 @@ namespace StopWordMaker
             this.button6.TabIndex = 9;
             this.button6.Text = "Хориҷ";
             this.button6.UseVisualStyleBackColor = true;
+            this.button6.Click += new System.EventHandler(this.button6_Click);
             // 
             // Form1
             // 
