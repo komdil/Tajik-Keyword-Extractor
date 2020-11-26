@@ -14,19 +14,6 @@ namespace Model.KEA
             Context = context;
         }
 
-        Logger logger;
-        public Logger Logger
-        {
-            get
-            {
-                if (logger == null)
-                {
-                    logger = new Logger();
-                }
-                return logger;
-            }
-        }
-
         public List<string> GetSimpleKeywords(string text)
         {
             var document = new Document.Document(text);

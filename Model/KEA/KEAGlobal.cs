@@ -115,5 +115,18 @@ namespace Model.KEA
                 return textnormilizerManager;
             }
         }
+
+        static Logger logger;
+        public static Logger Logger
+        {
+            get
+            {
+                if (logger == null)
+                {
+                    logger = new Logger();
+                }
+                return logger;
+            }
+        }
     }
 }

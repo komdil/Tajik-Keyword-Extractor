@@ -4,9 +4,12 @@ using Model.KEA;
 using Model.KEA.Document;
 using Model.KEADataSet.Sqlite;
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
+
 namespace TesterConsole
 {
     class Program
@@ -14,11 +17,11 @@ namespace TesterConsole
         static void Main(string[] args)
         {
             JsonContext jsonContext = new JsonContext();
+            KEAGlobal.Logger.OnLog += Logger_OnLog;
             KEAGlobal.InitiateKEAGlobal(jsonContext);
-            var myTestText = "Имрӯз ҳаво гарм аст. Дирӯз ҳаво ин қадар гарм сахт гарм набуд";
-            Console.ReadLine();
-            var words = KEAGlobal.KEAManager.GetSimpleKeywords(myTestText);
-            Console.WriteLine("All");
+            var tasks = ReadBooks();
+            Task.WaitAll(tasks);
+            Console.WriteLine("Thats all");
             Console.ReadLine();
         }
 
@@ -28,6 +31,24 @@ namespace TesterConsole
             {
                 wr.WriteLine(log);
             }
+        }
+
+        static Task[] ReadBooks()
+        {
+            var Files = new DirectoryInfo(@"C:\Users\Owner\Desktop\master\MAQOLA2\IDF");
+            List<Task> tasks = new List<Task>();
+            foreach (var item in Files.GetFiles())
+            {
+                Task.Run(new Action(() =>
+                {
+                    PDFHelper pDFHelper = new PDFHelper();
+                    var text = pDFHelper.ReadPdfFile(item.FullName);
+                    var document = new Document(text);
+                    document.Sentences.ForEach(s => s.NormalizeWords());
+                }));
+            }
+
+            return tasks.ToArray();
         }
 
         static void AddBooks()

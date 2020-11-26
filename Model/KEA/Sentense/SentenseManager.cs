@@ -149,14 +149,16 @@ namespace Model.KEA
                 var shouldBeRemoved = ShouldBeRemoved(item.Value);
                 if (shouldBeRemoved)
                 {
-                    if (Context.Bandaks.Any(s => s.Content == item.Value) ||
-                        Context.Peshoyands.Any(s => s.Content == item.Value) || Context.Jonishins.Any(s => s.Content == item.Value))
+                    if (
+                        Context.Bandaks.Any(s => s.Content == item.Value) ||
+                        Context.Peshoyands.Any(s => s.Content == item.Value) ||
+                        Context.Jonishins.Any(s => s.Content == item.Value))
                     {
 
                     }
                     else
                     {
-                        Logger.Log(item.Value);
+                        KEAGlobal.Logger.Log(item.Value);
                     }
                     sentence.Words.Remove(item);
                 }
