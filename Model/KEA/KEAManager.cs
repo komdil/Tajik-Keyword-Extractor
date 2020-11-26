@@ -8,8 +8,8 @@ namespace Model.KEA
 {
     public class KEAManager
     {
-        public IContext Context { get; }
-        public KEAManager(IContext context)
+        public IWordContext Context { get; }
+        public KEAManager(IWordContext context)
         {
             Context = context;
         }

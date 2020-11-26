@@ -16,7 +16,10 @@ namespace TesterConsole
             JsonContext jsonContext = new JsonContext();
             KEAGlobal.InitiateKEAGlobal(jsonContext);
             var myTestText = "Имрӯз ҳаво гарм аст. Дирӯз ҳаво ин қадар гарм сахт гарм набуд";
+            Console.ReadLine();
             var words = KEAGlobal.KEAManager.GetSimpleKeywords(myTestText);
+            Console.WriteLine("All");
+            Console.ReadLine();
         }
 
         private static void Logger_OnLog(string log)

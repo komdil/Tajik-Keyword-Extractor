@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace Model.DataSet.SqlServer
 {
-    public class SqlServerContext : DbContext, IContext
+    public class SqlServerContext : DbContext, IWordContext
     {
         public SqlServerContext()
         {
@@ -20,6 +20,8 @@ namespace Model.DataSet.SqlServer
         public List<BookDataSet> BookDataSets { get => GetEntities<BookDataSet>().ToList(); }
 
         public List<IWordsDataSet> Words { get => GetEntities<WordDataSet>().Cast<IWordsDataSet>().ToList(); }
+
+        public List<IWordsDataSet> StopWords { get => GetEntities<StopWord>().Cast<IWordsDataSet>().ToList(); }
 
         public IQueryable<T> GetEntities<T>() where T : class
         {
@@ -37,6 +39,7 @@ namespace Model.DataSet.SqlServer
             modelBuilder.Entity<JonishinDataSet>().HasKey(a => a.Guid);
             modelBuilder.Entity<PeshoyandDataSet>().HasKey(a => a.Guid);
             modelBuilder.Entity<BookDataSet>().HasKey(a => a.Guid);
+            modelBuilder.Entity<StopWord>().HasKey(a => a.Guid);
             base.OnModelCreating(modelBuilder);
         }
     }

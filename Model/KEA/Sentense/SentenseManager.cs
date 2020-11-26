@@ -8,7 +8,7 @@ namespace Model.KEA
 {
     public class SentenseManager : KEAManager
     {
-        public SentenseManager(IContext context) : base(context)
+        public SentenseManager(IWordContext context) : base(context)
         {
 
         }
