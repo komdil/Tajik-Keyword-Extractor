@@ -47,9 +47,16 @@ namespace WordTool
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
+            this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.button8 = new System.Windows.Forms.Button();
+            this.label5 = new System.Windows.Forms.Label();
+            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.textBox4 = new System.Windows.Forms.TextBox();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
+            this.tabPage3.SuspendLayout();
             this.SuspendLayout();
             // 
             // button1
@@ -152,6 +159,7 @@ namespace WordTool
             // 
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
+            this.tabControl1.Controls.Add(this.tabPage3);
             this.tabControl1.Location = new System.Drawing.Point(12, 12);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
@@ -237,6 +245,61 @@ namespace WordTool
             this.label3.TabIndex = 0;
             this.label3.Text = "Калимаи нав";
             // 
+            // tabPage3
+            // 
+            this.tabPage3.Controls.Add(this.textBox4);
+            this.tabPage3.Controls.Add(this.label6);
+            this.tabPage3.Controls.Add(this.textBox3);
+            this.tabPage3.Controls.Add(this.label5);
+            this.tabPage3.Controls.Add(this.button8);
+            this.tabPage3.Location = new System.Drawing.Point(4, 24);
+            this.tabPage3.Name = "tabPage3";
+            this.tabPage3.Size = new System.Drawing.Size(867, 598);
+            this.tabPage3.TabIndex = 2;
+            this.tabPage3.Text = "Табдил додани калима";
+            // 
+            // button8
+            // 
+            this.button8.Location = new System.Drawing.Point(250, 189);
+            this.button8.Name = "button8";
+            this.button8.Size = new System.Drawing.Size(75, 23);
+            this.button8.TabIndex = 0;
+            this.button8.Text = "Сабт";
+            this.button8.UseVisualStyleBackColor = true;
+            this.button8.Click += new System.EventHandler(this.button8_Click);
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(250, 72);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(131, 15);
+            this.label5.TabIndex = 1;
+            this.label5.Text = "Калимаи ивазшаванда";
+            // 
+            // textBox3
+            // 
+            this.textBox3.Location = new System.Drawing.Point(250, 90);
+            this.textBox3.Name = "textBox3";
+            this.textBox3.Size = new System.Drawing.Size(244, 23);
+            this.textBox3.TabIndex = 2;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(250, 130);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(127, 15);
+            this.label6.TabIndex = 1;
+            this.label6.Text = "Калимаи ивазкунанда";
+            // 
+            // textBox4
+            // 
+            this.textBox4.Location = new System.Drawing.Point(250, 148);
+            this.textBox4.Name = "textBox4";
+            this.textBox4.Size = new System.Drawing.Size(244, 23);
+            this.textBox4.TabIndex = 2;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -252,6 +315,8 @@ namespace WordTool
             this.tabPage1.PerformLayout();
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
+            this.tabPage3.ResumeLayout(false);
+            this.tabPage3.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -276,6 +341,12 @@ namespace WordTool
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.TabPage tabPage3;
+        private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Button button8;
     }
 }
 

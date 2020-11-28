@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Text;
 using System.Text.RegularExpressions;
 
@@ -35,6 +37,17 @@ namespace Model.KEA.TextNormilizer
             }
 
             return text;
+        }
+
+        public List<ReplaceMent> ReplaceMents { get; }
+
+        public TextnormilizerManager()
+        {
+            var json = File.ReadAllText("DataSet\\Json\\Replacement.json");
+            var replaceMent = JsonConvert.DeserializeObject<List<ReplaceMent>>(json);
+            if (replaceMent == null)
+                replaceMent = new List<ReplaceMent>();
+            ReplaceMents = replaceMent;
         }
     }
 }

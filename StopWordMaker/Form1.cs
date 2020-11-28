@@ -1,4 +1,5 @@
 ﻿using Model.DataSet.Json;
+using Model.KEA.TextNormilizer;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -12,6 +13,7 @@ namespace WordTool
     {
         public const string StopWordsPath = @"..\..\..\Model\DataSet\Json\StopWords.json";
         public const string WordsPath = @"..\..\..\Model\DataSet\Json\Words.json";
+        public const string ReplaceMent = @"..\..\..\Model\DataSet\Json\ReplaceMent.json";
 
         public List<string> NewStopWords { get; set; } = new List<string>();
         public List<JsonStopWord> StopWords { get; set; }
@@ -161,7 +163,7 @@ namespace WordTool
         {
             try
             {
-                var text = JsonConvert.SerializeObject(StopWords);
+                var text = JsonConvert.SerializeObject(StopWords, Formatting.Indented);
                 File.WriteAllText(StopWordsPath, text);
                 MessageBox.Show("Сабт карда шуд!");
             }
@@ -176,8 +178,8 @@ namespace WordTool
         {
             try
             {
-                var newWord = textBox2.Text.Trim();
-                var info = textBox1.Text.Trim();
+                var newWord = textBox2.Text.Trim().ToLower();
+                var info = textBox1.Text.Trim().ToLower();
                 var textJson = File.ReadAllText(WordsPath);
                 var list = JsonConvert.DeserializeObject<List<Word>>(textJson);
                 list.Add(new Word()
@@ -186,7 +188,7 @@ namespace WordTool
                     Content = newWord,
                     ContentInfo = info
                 });
-                var newText = JsonConvert.SerializeObject(list);
+                var newText = JsonConvert.SerializeObject(list, Formatting.Indented);
                 File.WriteAllText(WordsPath, newText);
                 MessageBox.Show("Ҳамроҳ карда шуд!");
             }
@@ -199,6 +201,25 @@ namespace WordTool
         private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void button8_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var textFrom = textBox3.Text.ToLower();
+                var textTo = textBox4.Text.ToLower();
+                var json = File.ReadAllText(ReplaceMent);
+                var replaceMent = JsonConvert.DeserializeObject<List<ReplaceMent>>(json);
+                replaceMent.Add(new ReplaceMent { ReplaceFrom = textFrom.Trim(), ReplaceTo = textTo.Trim() });
+                json = JsonConvert.SerializeObject(replaceMent, Formatting.Indented);
+                File.WriteAllText(ReplaceMent, json);
+                MessageBox.Show("Ҳамроҳ карда шуд");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Хатогӣ дар вақти ҳамроҳкунӣ\n" + ex.Message);
+            }
         }
     }
 }
