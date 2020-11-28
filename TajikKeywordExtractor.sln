@@ -9,7 +9,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WPFClient", "WPFClient\WPFC
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TesterConsole", "TesterConsole\TesterConsole.csproj", "{9931D1F2-D586-43FB-890B-F999C1CCC051}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StopWordMaker", "StopWordMaker\StopWordMaker.csproj", "{1DD00B85-68DA-444F-A2A7-E8D17EE325A0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WordTool", "StopWordMaker\WordTool.csproj", "{1DD00B85-68DA-444F-A2A7-E8D17EE325A0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

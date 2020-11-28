@@ -6,11 +6,12 @@ using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 
-namespace StopWordMaker
+namespace WordTool
 {
     public partial class Form1 : Form
     {
         public const string StopWordsPath = @"..\..\..\Model\DataSet\Json\StopWords.json";
+        public const string WordsPath = @"..\..\..\Model\DataSet\Json\Words.json";
 
         public List<string> NewStopWords { get; set; } = new List<string>();
         public List<JsonStopWord> StopWords { get; set; }
@@ -21,6 +22,8 @@ namespace StopWordMaker
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            tabControl1.Width = this.Width;
+            tabControl1.Height = this.Height;
             StopWords = GetExistingStopWords();
             foreach (var item in StopWords)
             {
@@ -166,6 +169,35 @@ namespace StopWordMaker
             {
                 MessageBox.Show("Хатогӣ! " + ex.Message);
             }
+
+        }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var newWord = textBox2.Text.Trim();
+                var info = textBox1.Text.Trim();
+                var textJson = File.ReadAllText(WordsPath);
+                var list = JsonConvert.DeserializeObject<List<Word>>(textJson);
+                list.Add(new Word()
+                {
+                    Guid = Guid.NewGuid(),
+                    Content = newWord,
+                    ContentInfo = info
+                });
+                var newText = JsonConvert.SerializeObject(list);
+                File.WriteAllText(WordsPath, newText);
+                MessageBox.Show("Ҳамроҳ карда шуд!");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Хатогӣ " + ex.Message);
+            }
+        }
+
+        private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
+        {
 
         }
     }
