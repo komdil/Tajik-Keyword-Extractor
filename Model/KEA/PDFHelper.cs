@@ -10,24 +10,23 @@ namespace Model.KEA
     {
         public string ReadPdfFile(string path)
         {
-            PdfReader reader2 = new PdfReader(path);
-            string strText = string.Empty;
-
-            for (int page = 1; page <= reader2.NumberOfPages; page++)
+            using (PdfReader reader = new PdfReader(path))
             {
-                ITextExtractionStrategy its = new SimpleTextExtractionStrategy();
-                PdfReader reader = new PdfReader(path);
-                var bytes = reader.GetPageContent(page);
-                var text = Encoding.Unicode.GetString(bytes);
+                string strText = string.Empty;
 
-                var s = PdfTextExtractor.GetTextFromPage(reader, page, its);
-                s = Encoding.UTF8.GetString(Encoding.Convert(Encoding.Default, Encoding.UTF8, Encoding.Default.GetBytes(s)));
-                s = ReplaceMent(s);
-                strText = strText + s;
-                reader.Close();
+                for (int page = 1; page <= reader.NumberOfPages; page++)
+                {
+                    ITextExtractionStrategy its = new SimpleTextExtractionStrategy();
+                    var bytes = reader.GetPageContent(page);
+                    var text = Encoding.Unicode.GetString(bytes);
+                    var s = PdfTextExtractor.GetTextFromPage(reader, page, its);
+                    s = Encoding.UTF8.GetString(Encoding.Convert(Encoding.Default, Encoding.UTF8, Encoding.Default.GetBytes(s)));
+                    s = ReplaceMent(s);
+                    strText = strText + s;
+                }
+                strText = KEAGlobal.TextnormilizerManager.RemoveUnnassesarySpaces(strText);
+                return strText;
             }
-            strText = KEAGlobal.TextnormilizerManager.RemoveUnnassesarySpaces(strText);
-            return strText;
         }
 
         ReplaceMent[] replaceMents = new ReplaceMent[]
@@ -50,7 +49,6 @@ namespace Model.KEA
             {
                 text = text.Replace(item.ReplaceFrom, item.ReplaceTo);
             }
-
             return text;
         }
     }

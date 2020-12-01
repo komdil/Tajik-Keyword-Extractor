@@ -7,6 +7,7 @@ namespace Model.KEA.Document
         public Document(string content)
         {
             Content = KEAGlobal.TextnormilizerManager.RemoveUnnassesarySpaces(content);
+            Content = KEAGlobal.TextnormilizerManager.MakeReplaceMent(Content);
             Sentences = KEAGlobal.DocumentManager.SplitSentencesFromDoc(this);
         }
 

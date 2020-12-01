@@ -2,6 +2,7 @@
 using Model.DataSet.SqlServer;
 using Model.KEA;
 using Model.KEA.Document;
+using Model.KEA.TFIDF;
 using Model.KEADataSet.Sqlite;
 using Newtonsoft.Json;
 using System;
@@ -20,41 +21,112 @@ namespace TesterConsole
             JsonContext jsonContext = new JsonContext();
             KEAGlobal.Logger.OnLog += Logger_OnLog;
             KEAGlobal.InitiateKEAGlobal(jsonContext);
-            var tasks = ReadBooks();
-            Task.WaitAll(tasks);
-            Console.WriteLine("Thats all");
-            Console.ReadLine();
+            var doc = KEAGlobal.KEAManager.GetDocument(@"D:\master degree\master\MAQOLA2\MainWork\Tabiatshinosi\2_TABIATSHINOSI.pdf", true);
+            var sheet = new List<TFIDFView>();
+            foreach (var item in doc.Sentences.SelectMany(s => s.Words).GroupBy(s => s.Value).Select(s => s.FirstOrDefault()))
+            {
+                var word = jsonContext.WordsWithIDF.FirstOrDefault(s => s.Content == item.Value);
+                var tf = KEAGlobal.TFIDFManager.CalCulateTF(item, doc);
+                var idf = word.IDF;
+                var result = KEAGlobal.TFIDFManager.CalculateTFIDF(item.Value, tf, idf);
+                sheet.Add(result);
+            }
+            sheet = sheet.OrderByDescending(s => s.TF_IDF).ToList();
+            var text = JsonConvert.SerializeObject(sheet, Formatting.Indented);
+            File.WriteAllText("MyResult.json", text);
+        }
+
+        static void PreviousMain()
+        {
+            //var text = File.ReadAllText("CalIDF.json");
+            //var words = JsonConvert.DeserializeObject<List<Model.DataSet.Json.Word>>(text);
+            //var random = new Random();
+            //foreach (var item in words.Where(s => s.IDF == 0))
+            //{
+            //    double idf = random.Next(1, 20);
+            //    double delimiter = 10000;
+            //    item.IDF = idf / delimiter;
+            //}
+            //text = JsonConvert.SerializeObject(words, Formatting.Indented);
+            //File.WriteAllText("CalIDF2.json", text);
+
+            //JsonContext jsonContext = new JsonContext();
+            //KEAGlobal.Logger.OnLog += Logger_OnLog;
+            //KEAGlobal.InitiateKEAGlobal(jsonContext);
+            //var tasks = ReadBooks();
+            //Task.WaitAll(tasks);
+            //Console.WriteLine("Thats all");
+            //Console.ReadLine();
+
+            //JsonContext jsonContext = new JsonContext();
+            //KEAGlobal.Logger.OnLog += Logger_OnLog;
+            //KEAGlobal.InitiateKEAGlobal(jsonContext);
+            //var TFIDFManager = KEAGlobal.TFIDFManager;
+            //var tasks = ReadBooks();
+            //Task.WaitAll(tasks);
+            //KEAGlobal.Logger.Log("Start calculating IDF");
+            //var allDocuments = tasks.Select(s => s.Result);
+            //var allwords = jsonContext.Words.Cast<Model.DataSet.Json.Word>().ToList();
+
+            //int delay = 2000;
+            //int counter = 0;
+            //List<Task> idfTasks = new List<Task>();
+            //foreach (var item in allwords)
+            //{
+            //    var task = Task.Run(new Action(() =>
+            //      {
+            //          try
+            //          {
+            //              double idf = TFIDFManager.CalCulateIDF(allDocuments.ToList(), new Model.KEA.Word(item.Content));
+            //              item.IDF = idf;
+            //          }
+            //          catch
+            //          {
+
+            //          }
+            //      }));
+            //    idfTasks.Add(task);
+            //    if (counter >= delay)
+            //    {
+            //        Task.WaitAll(idfTasks.ToArray());
+            //        KEAGlobal.Logger.Log("Delay");
+            //        idfTasks.Clear();
+            //        counter = 0;
+            //    }
+            //    counter++;
+            //}
+            //var text = JsonConvert.SerializeObject(allwords, Formatting.Indented);
+            //File.WriteAllText("CalIDF.json", text);
         }
 
         private static void Logger_OnLog(string log)
         {
-            using (StreamWriter wr = new StreamWriter("unknown.txt", true))
-            {
-                wr.WriteLine(log);
-            }
+            Console.WriteLine(log);
+            //using (StreamWriter wr = new StreamWriter("unknown.txt", true))
+            //{
+            //    wr.WriteLine(log);
+            //}
         }
 
         static Task<Document>[] ReadBooks()
         {
             var Files = new DirectoryInfo(@"D:\master degree\master\MAQOLA2\IDF");
             List<Task<Document>> tasks = new List<Task<Document>>();
-            foreach (var item in Files.GetFiles())
+            var allFiles = Files.GetFiles();
+            KEAGlobal.Logger.Log($"Count of file: {allFiles.Count()}");
+            foreach (var item in allFiles)
             {
-                var task = new Task<Document>(() => GetDocument(item.FullName));
+                var task = new Task<Document>(() =>
+                {
+                    var doc = KEAGlobal.KEAManager.GetDocument(item.FullName);
+                    KEAGlobal.Logger.Log($"Readed file: {item.FullName}");
+                    return doc;
+                });
                 task.Start();
                 tasks.Add(task);
             }
 
             return tasks.ToArray();
-        }
-
-        static Document GetDocument(string path)
-        {
-            PDFHelper pDFHelper = new PDFHelper();
-            var text = pDFHelper.ReadPdfFile(path);
-            var document = new Document(text);
-            document.Sentences.ForEach(s => s.NormalizeWords());
-            return document;
         }
 
         static void Splitwords()

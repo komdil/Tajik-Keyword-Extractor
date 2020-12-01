@@ -12,16 +12,31 @@ namespace Model.KEA.TFIDF
 
             foreach (var wordToCalculate in wordsOfDocumentToCalculate.GroupBy(s => s.Value).Select(s => s.FirstOrDefault()))
             {
-                TF tF = new TF(wordToCalculate, documentToCalculate);
-                double tFValue = tF.CalculateTF();
-                IDF iDF = new IDF(documentsDataSet, wordToCalculate);
-                double idfValue = iDF.CalculateIDF();
-                TF_IDF tF_IDF = new TF_IDF(tFValue, idfValue);
-                double tfIdfValue = tF_IDF.CalculateTF_IDF();
-                tFIDFViews.Add(new TFIDFView { Word = wordToCalculate.Value, IDF = idfValue, TF = tFValue, TF_IDF = tfIdfValue });
+                var tFValue = CalCulateTF(wordToCalculate, documentToCalculate);
+                double idfValue = CalCulateIDF(documentsDataSet, wordToCalculate);
+                tFIDFViews.Add(CalculateTFIDF(wordToCalculate.Value, idfValue, tFValue));
             }
 
             return tFIDFViews;
+        }
+
+        public TFIDFView CalculateTFIDF(string word, double idfValue, double tFValue)
+        {
+            TF_IDF tF_IDF = new TF_IDF(tFValue, idfValue);
+            double tfIdfValue = tF_IDF.CalculateTF_IDF();
+            return new TFIDFView(word, idfValue, tFValue, tfIdfValue);
+        }
+
+        public double CalCulateTF(Word wordToCalculate, Document.Document documentToCalculate)
+        {
+            TF tF = new TF(wordToCalculate, documentToCalculate);
+            return tF.CalculateTF();
+        }
+
+        public double CalCulateIDF(List<Document.Document> documentsDataSet, Word wordToCalculate)
+        {
+            IDF iDF = new IDF(documentsDataSet, wordToCalculate);
+            return iDF.CalculateIDF();
         }
     }
 }

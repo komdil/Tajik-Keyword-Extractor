@@ -149,18 +149,6 @@ namespace Model.KEA
                 var shouldBeRemoved = ShouldBeRemoved(item.Value);
                 if (shouldBeRemoved)
                 {
-                    if (
-                        item.Value.Any(s => char.IsDigit(s)) ||
-                        Context.Bandaks.Any(s => s.Content == item.Value) ||
-                        Context.Peshoyands.Any(s => s.Content == item.Value) ||
-                        Context.Jonishins.Any(s => s.Content == item.Value))
-                    {
-
-                    }
-                    else
-                    {
-                        KEAGlobal.Logger.Log(item.Value);
-                    }
                     sentence.Words.Remove(item);
                 }
             }

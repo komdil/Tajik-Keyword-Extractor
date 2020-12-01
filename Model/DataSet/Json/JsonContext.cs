@@ -19,14 +19,17 @@ namespace Model.DataSet.Json
 
         public List<IWordsDataSet> Words { get; }
 
+        public List<Word> WordsWithIDF { get; }
+
         public JsonContext()
         {
             AllWords = JsonConvert.DeserializeObject<List<Word>>(File.ReadAllText("DataSet\\Json\\dataset.json"));
             StopWords = JsonConvert.DeserializeObject<List<JsonStopWord>>(File.ReadAllText("DataSet\\Json\\StopWords.json")).Cast<IWordsDataSet>().ToList();
-            Words = JsonConvert.DeserializeObject<List<JsonStopWord>>(File.ReadAllText("DataSet\\Json\\Words.json")).Cast<IWordsDataSet>().ToList();
-            Jonishins = JsonConvert.DeserializeObject<List<JsonStopWord>>(File.ReadAllText("DataSet\\Json\\Jonishins.json")).Cast<IWordsDataSet>().ToList();
-            Peshoyands = JsonConvert.DeserializeObject<List<JsonStopWord>>(File.ReadAllText("DataSet\\Json\\Peshoyands.json")).Cast<IWordsDataSet>().ToList();
-            Bandaks = JsonConvert.DeserializeObject<List<JsonStopWord>>(File.ReadAllText("DataSet\\Json\\Bandaks.json")).Cast<IWordsDataSet>().ToList();
+            Words = JsonConvert.DeserializeObject<List<Word>>(File.ReadAllText("DataSet\\Json\\Words.json")).Cast<IWordsDataSet>().ToList();
+            Jonishins = JsonConvert.DeserializeObject<List<Word>>(File.ReadAllText("DataSet\\Json\\Jonishins.json")).Cast<IWordsDataSet>().ToList();
+            Peshoyands = JsonConvert.DeserializeObject<List<Word>>(File.ReadAllText("DataSet\\Json\\Peshoyands.json")).Cast<IWordsDataSet>().ToList();
+            Bandaks = JsonConvert.DeserializeObject<List<Word>>(File.ReadAllText("DataSet\\Json\\Bandaks.json")).Cast<IWordsDataSet>().ToList();
+            WordsWithIDF = JsonConvert.DeserializeObject<List<Word>>(File.ReadAllText("DataSet\\Json\\WordsWithIDF.json")).ToList();
         }
     }
 }

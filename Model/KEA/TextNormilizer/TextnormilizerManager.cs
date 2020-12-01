@@ -49,5 +49,14 @@ namespace Model.KEA.TextNormilizer
                 replaceMent = new List<ReplaceMent>();
             ReplaceMents = replaceMent;
         }
+
+        public string MakeReplaceMent(string text)
+        {
+            foreach (var item in ReplaceMents)
+            {
+                text = text.Replace(item.ReplaceFrom, item.ReplaceTo);
+            }
+            return text;
+        }
     }
 }

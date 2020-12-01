@@ -11,6 +11,7 @@ namespace Model.DataSet.Json
         public string Content { get; set; }
 
         public string ContentInfo { get; set; }
+        public double IDF { get; set; }
 
         public bool IsBandak()
         {
@@ -25,6 +26,11 @@ namespace Model.DataSet.Json
         public bool IsJonishin()
         {
             return ContentInfo.ToLower().Contains("ҷонишин");
+        }
+
+        public override string ToString()
+        {
+            return Content;
         }
     }
 }

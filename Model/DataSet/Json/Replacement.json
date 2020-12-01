@@ -1,1 +1,62 @@
-[]
+[
+  {
+    "ReplaceFrom": "ѐ",
+    "ReplaceTo": "ё"
+  },
+  {
+    "ReplaceFrom": "(",
+    "ReplaceTo": ""
+  },
+  {
+    "ReplaceFrom": "ї",
+    "ReplaceTo": "ӣ"
+  },
+  {
+    "ReplaceFrom": "хатти",
+    "ReplaceTo": "хаттӣ"
+  },
+  {
+    "ReplaceFrom": "рохбар",
+    "ReplaceTo": "роҳбар"
+  },
+  {
+    "ReplaceFrom": "суикасд",
+    "ReplaceTo": "сӯиқасд"
+  },
+  {
+    "ReplaceFrom": "кием",
+    "ReplaceTo": "қиём"
+  },
+  {
+    "ReplaceFrom": "рухия",
+    "ReplaceTo": "руҳия"
+  },
+  {
+    "ReplaceFrom": "мусаллахона",
+    "ReplaceTo": "мусаллаҳ"
+  },
+  {
+    "ReplaceFrom": "киргиз",
+    "ReplaceTo": "қиргиз"
+  },
+  {
+    "ReplaceFrom": "исхок",
+    "ReplaceTo": "исҳоқ"
+  },
+  {
+    "ReplaceFrom": "мехнат",
+    "ReplaceTo": "меҳнат"
+  },
+  {
+    "ReplaceFrom": "мехнаткаш",
+    "ReplaceTo": "меҳнаткаш"
+  },
+  {
+    "ReplaceFrom": "худсарихои",
+    "ReplaceTo": "худсариҳои"
+  },
+  {
+    "ReplaceFrom": "хачм",
+    "ReplaceTo": "ҳачм"
+  }
+]

@@ -1,11 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Model.KEA.TFIDF
+﻿namespace Model.KEA.TFIDF
 {
     public class TFIDFView
     {
+        public TFIDFView(string word, double tf, double idf, double tfIdf)
+        {
+            Word = word;
+            TF = tf;
+            IDF = idf;
+            TF_IDF = tfIdf;
+        }
+
         public string Word { get; set; }
 
         public double TF { get; set; }
