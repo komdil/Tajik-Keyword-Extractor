@@ -18,22 +18,25 @@ namespace TesterConsole
     {
         static void Main(string[] args)
         {
-            JsonContext jsonContext = new JsonContext();
-            KEAGlobal.Logger.OnLog += Logger_OnLog;
-            KEAGlobal.InitiateKEAGlobal(jsonContext);
-            var doc = KEAGlobal.KEAManager.GetDocument(@"D:\master degree\master\MAQOLA2\MainWork\Tabiatshinosi\2_TABIATSHINOSI.pdf", true);
-            var sheet = new List<TFIDFView>();
-            foreach (var item in doc.Sentences.SelectMany(s => s.Words).GroupBy(s => s.Value).Select(s => s.FirstOrDefault()))
-            {
-                var word = jsonContext.WordsWithIDF.FirstOrDefault(s => s.Content == item.Value);
-                var tf = KEAGlobal.TFIDFManager.CalCulateTF(item, doc);
-                var idf = word.IDF;
-                var result = KEAGlobal.TFIDFManager.CalculateTFIDF(item.Value, tf, idf);
-                sheet.Add(result);
-            }
-            sheet = sheet.OrderByDescending(s => s.TF_IDF).ToList();
-            var text = JsonConvert.SerializeObject(sheet, Formatting.Indented);
-            File.WriteAllText("MyResult.json", text);
+
+            var text = MSWordHelper.GetText(@"C:\Users\Owner\Desktop\1_TABIATSHINOSI_unlocked_tjk.docx");
+
+            //JsonContext jsonContext = new JsonContext();
+            //KEAGlobal.Logger.OnLog += Logger_OnLog;
+            //KEAGlobal.InitiateKEAGlobal(jsonContext);
+            //var doc = KEAGlobal.KEAManager.GetDocument(@"D:\master degree\master\MAQOLA2\MainWork\Tabiatshinosi\2_TABIATSHINOSI.pdf", true);
+            //var sheet = new List<TFIDFView>();
+            //foreach (var item in doc.Sentences.SelectMany(s => s.Words).GroupBy(s => s.Value).Select(s => s.FirstOrDefault()))
+            //{
+            //    var word = jsonContext.WordsWithIDF.FirstOrDefault(s => s.Content == item.Value);
+            //    var tf = KEAGlobal.TFIDFManager.CalCulateTF(item, doc);
+            //    var idf = word.IDF;
+            //    var result = KEAGlobal.TFIDFManager.CalculateTFIDF(item.Value, tf, idf);
+            //    sheet.Add(result);
+            //}
+            //sheet = sheet.OrderByDescending(s => s.TF_IDF).ToList();
+            //var text = JsonConvert.SerializeObject(sheet, Formatting.Indented);
+            //File.WriteAllText("MyResult.json", text);
         }
 
         static void PreviousMain()
