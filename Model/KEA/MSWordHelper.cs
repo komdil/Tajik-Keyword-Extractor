@@ -14,10 +14,6 @@ namespace Model.KEA
             using (WordprocessingDocument wordDocument =
                 WordprocessingDocument.Open(filepath, false))
             {
-                foreach (var item in wordDocument.Parts)
-                {
-
-                }
                 // Assign a reference to the existing document body.  
                 Body body = wordDocument.MainDocumentPart.Document.Body;
                 //text of Docx file 
