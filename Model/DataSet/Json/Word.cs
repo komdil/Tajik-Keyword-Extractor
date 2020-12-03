@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Model.DataSet.Json
 {
-    public class Word : IWordsDataSet
+    public class Word : IWordsDataSet, IWordWithIDF
     {
         public Guid Guid { get; set; }
 

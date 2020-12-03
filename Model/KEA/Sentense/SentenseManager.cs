@@ -126,7 +126,7 @@ namespace Model.KEA
             return Context.Words.Any(s => s.Content == splited);
         }
 
-        string[] bandakiU = new string[] { "ҳову", "ону", "Ю", "у", "ёну" };
+        string[] bandakiU = new string[] { "ҳову", "ону", "Ю", "у", "ёну", "ҳоеро" };
         void BandakiU(IEnumerable<Word> words)
         {
             foreach (var bandak in bandakiU)

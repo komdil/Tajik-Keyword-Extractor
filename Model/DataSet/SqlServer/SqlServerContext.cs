@@ -23,6 +23,8 @@ namespace Model.DataSet.SqlServer
 
         public List<IWordsDataSet> StopWords { get => GetEntities<StopWord>().Cast<IWordsDataSet>().ToList(); }
 
+        public List<IWordWithIDF> WordsWithIDF { get => GetEntities<WordsWithIDFDataSet>().Cast<IWordWithIDF>().ToList(); }
+
         public IQueryable<T> GetEntities<T>() where T : class
         {
             return Set<T>();
@@ -40,6 +42,7 @@ namespace Model.DataSet.SqlServer
             modelBuilder.Entity<PeshoyandDataSet>().HasKey(a => a.Guid);
             modelBuilder.Entity<BookDataSet>().HasKey(a => a.Guid);
             modelBuilder.Entity<StopWord>().HasKey(a => a.Guid);
+            modelBuilder.Entity<WordsWithIDFDataSet>().HasKey(a => a.Guid);
             base.OnModelCreating(modelBuilder);
         }
     }

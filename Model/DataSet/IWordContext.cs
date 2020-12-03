@@ -10,5 +10,6 @@ namespace Model.DataSet
         List<IWordsDataSet> Jonishins { get; }
         List<IWordsDataSet> Peshoyands { get; }
         List<IWordsDataSet> StopWords { get; }
+        List<IWordWithIDF> WordsWithIDF { get; }
     }
 }

@@ -1,1 +1,77 @@
-[]
+[
+  {
+    "Guid": "06e33abf-ce73-4981-9ef3-5196371d0238",
+    "Content": "ва",
+    "ContentInfo": "СТОП-КАЛИМА: ва"
+  },
+  {
+    "Guid": "9aa333e1-fe3f-4f00-915a-05285541df1f",
+    "Content": "дар",
+    "ContentInfo": "СТОП-КАЛИМА: дар"
+  },
+  {
+    "Guid": "60928faa-59e9-4dfd-b9a7-05c7e0fedf8f",
+    "Content": "фарқ",
+    "ContentInfo": "СТОП-КАЛИМА: фарқ"
+  },
+  {
+    "Guid": "86f2f515-b6f6-4579-a9ea-0758a0024666",
+    "Content": "ки",
+    "ContentInfo": "СТОП-КАЛИМА: ки"
+  },
+  {
+    "Guid": "9bb8c6bd-8527-4dc4-a0bb-4f6618bb95e9",
+    "Content": "аҳамият",
+    "ContentInfo": "СТОП-КАЛИМА: аҳамият"
+  },
+  {
+    "Guid": "b25f2d49-55e4-4b2e-baef-fc628b5e8380",
+    "Content": "ороишӣ",
+    "ContentInfo": "СТОП-КАЛИМА: ороишӣ"
+  },
+  {
+    "Guid": "533154b7-a518-4d84-8e64-e8bc6e5f0651",
+    "Content": "вуҷуд",
+    "ContentInfo": "СТОП-КАЛИМА: вуҷуд"
+  },
+  {
+    "Guid": "c0ca5f16-8258-4a1b-a295-b1949da21f16",
+    "Content": "қисм",
+    "ContentInfo": "СТОП-КАЛИМА: қисм"
+  },
+  {
+    "Guid": "85c6d34d-ca40-4baf-8a10-e67d18658b3b",
+    "Content": "тағйир",
+    "ContentInfo": "СТОП-КАЛИМА: тағйир"
+  },
+  {
+    "Guid": "9b0c4ec4-ca54-4863-8614-4e0d5ae08b62",
+    "Content": "амалӣ",
+    "ContentInfo": "СТОП-КАЛИМА: амалӣ"
+  },
+  {
+    "Guid": "2aad7589-0e67-44e1-b2ac-1600bd053006",
+    "Content": "ҷумла",
+    "ContentInfo": "СТОП-КАЛИМА: ҷумла"
+  },
+  {
+    "Guid": "acaddc4f-3b7e-465e-8e38-b28678639e70",
+    "Content": "ҳангом",
+    "ContentInfo": "СТОП-КАЛИМА: ҳангом"
+  },
+  {
+    "Guid": "bebac912-75d9-4748-ad58-634240592a5d",
+    "Content": "мушоҳида",
+    "ContentInfo": "СТОП-КАЛИМА: мушоҳида"
+  },
+  {
+    "Guid": "72239f10-3fb8-4f35-aa07-1d924eff6706",
+    "Content": "ҳаракат",
+    "ContentInfo": "СТОП-КАЛИМА: ҳаракат"
+  },
+  {
+    "Guid": "0022adce-fb36-4d5f-acb6-baea3d0e4906",
+    "Content": "бо",
+    "ContentInfo": "СТОП-КАЛИМА: бо"
+  }
+]

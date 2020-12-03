@@ -18,25 +18,20 @@ namespace TesterConsole
     {
         static void Main(string[] args)
         {
-
-            var text = MSWordHelper.GetText(@"C:\Users\Owner\Desktop\1_TABIATSHINOSI_unlocked_tjk.docx");
-
-            //JsonContext jsonContext = new JsonContext();
-            //KEAGlobal.Logger.OnLog += Logger_OnLog;
-            //KEAGlobal.InitiateKEAGlobal(jsonContext);
-            //var doc = KEAGlobal.KEAManager.GetDocument(@"D:\master degree\master\MAQOLA2\MainWork\Tabiatshinosi\2_TABIATSHINOSI.pdf", true);
-            //var sheet = new List<TFIDFView>();
-            //foreach (var item in doc.Sentences.SelectMany(s => s.Words).GroupBy(s => s.Value).Select(s => s.FirstOrDefault()))
-            //{
-            //    var word = jsonContext.WordsWithIDF.FirstOrDefault(s => s.Content == item.Value);
-            //    var tf = KEAGlobal.TFIDFManager.CalCulateTF(item, doc);
-            //    var idf = word.IDF;
-            //    var result = KEAGlobal.TFIDFManager.CalculateTFIDF(item.Value, tf, idf);
-            //    sheet.Add(result);
-            //}
-            //sheet = sheet.OrderByDescending(s => s.TF_IDF).ToList();
-            //var text = JsonConvert.SerializeObject(sheet, Formatting.Indented);
-            //File.WriteAllText("MyResult.json", text);
+            JsonContext jsonContext = new JsonContext();
+            KEAGlobal.Logger.OnLog += Logger_OnLog;
+            KEAGlobal.InitiateKEAGlobal(jsonContext);
+            Task.Run(new Action(() =>
+            {
+                var results = KEAGlobal.KEAManager.CalculateTFIDFFromFolder(@"D:\master degree\master\MAQOLA2\MainWork\Fizika");
+                foreach (var item in results)
+                {
+                    var sheet = item.Value.OrderByDescending(s => s.TF_IDF).ToList().Take(30);
+                    MSExcelHelper.ExtractResult($"{item.Key}.csv", sheet.ToList());
+                }
+                Console.WriteLine("Finished");
+            }));
+            Console.ReadLine();
         }
 
         static void PreviousMain()
@@ -184,7 +179,6 @@ namespace TesterConsole
             }
             sqlServerContext.SaveChanges();
         }
-
 
         static SqlServerContext ConvertFromJsonToSQLServer()
         {
