@@ -21,16 +21,18 @@ namespace TesterConsole
             JsonContext jsonContext = new JsonContext();
             KEAGlobal.Logger.OnLog += Logger_OnLog;
             KEAGlobal.InitiateKEAGlobal(jsonContext);
-            Task.Run(new Action(() =>
-            {
-                var results = KEAGlobal.KEAManager.CalculateTFIDFFromFolder(@"D:\master degree\master\MAQOLA2\MainWork\Fizika");
-                foreach (var item in results)
-                {
-                    var sheet = item.Value.OrderByDescending(s => s.TF_IDF).ToList().Take(30);
-                    MSExcelHelper.ExtractResult($"{item.Key}.csv", sheet.ToList());
-                }
-                Console.WriteLine("Finished");
-            }));
+            MSExcelHelper.ExtractResult($"WordsWithIDF.csv", jsonContext.WordsWithIDF.OrderByDescending(d => d.IDF).ToList());
+
+            //Task.Run(new Action(() =>
+            //{
+            //    var results = KEAGlobal.KEAManager.CalculateTFIDFFromFolder(@"D:\master degree\master\MAQOLA2\MainWork\Fizika");
+            //    foreach (var item in results)
+            //    {
+            //        var sheet = item.Value.OrderByDescending(s => s.TF_IDF).ToList().Take(30);
+            //        MSExcelHelper.ExtractResult($"{item.Key}.csv", sheet.ToList());
+            //    }
+            //    Console.WriteLine("Finished");
+            //}));
             Console.ReadLine();
         }
 

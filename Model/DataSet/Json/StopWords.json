@@ -73,5 +73,15 @@
     "Guid": "0022adce-fb36-4d5f-acb6-baea3d0e4906",
     "Content": "бо",
     "ContentInfo": "СТОП-КАЛИМА: бо"
+  },
+  {
+    "Guid": "b58440e3-5e93-42e8-bf50-0fa8087a9edc",
+    "Content": "тахлия",
+    "ContentInfo": "СТОП-КАЛИМА: тахлия"
+  },
+  {
+    "Guid": "2c69fc72-702a-4c59-b275-172a00e02885",
+    "Content": "қадар",
+    "ContentInfo": "СТОП-КАЛИМА: қадар"
   }
 ]

@@ -58,5 +58,13 @@
   {
     "ReplaceFrom": "хачм",
     "ReplaceTo": "ҳачм"
+  },
+  {
+    "ReplaceFrom": "конун",
+    "ReplaceTo": "қонун"
+  },
+  {
+    "ReplaceFrom": "кадар",
+    "ReplaceTo": "қадар"
   }
 ]
