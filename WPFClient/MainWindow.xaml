@@ -5,7 +5,6 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPFClient"
         mc:Ignorable="d"
-     
         Title="MainWindow" Height="450" Width="800"
         WindowState="Maximized"
         >
@@ -16,17 +15,12 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <DockPanel Margin="10" Grid.ColumnSpan="2">
-            <Button DockPanel.Dock="Bottom"  Command="{Binding Calculate}" Content="Ҳисоби TF-IDF" Padding="10" />
+            <Button DockPanel.Dock="Bottom"  Command="{Binding Calculate}" Content="Ҳисоб" Padding="10" />
             <TextBox  TextWrapping="Wrap" AcceptsReturn="True" AcceptsTab="True" SpellCheck.IsEnabled="True" Text="{Binding InputText}"/>
         </DockPanel>
-        <DataGrid AutoGenerateColumns="False" Margin="10" Grid.Column="2" ItemsSource="{Binding Words}">
-            <DataGrid.Columns>
-                <DataGridTextColumn  Binding="{Binding Word}" Header="Калима" />
-                <DataGridTextColumn  Binding="{Binding TF}" Header="TF" />
-                <DataGridTextColumn  Binding="{Binding IDF}" Header="IDF" />
-                <DataGridTextColumn  Binding="{Binding TF_IDF}" Header="TF-IDF" />
-            </DataGrid.Columns>
-        </DataGrid>
+        <ListBox Margin="10" Grid.Column="2" ItemsSource="{Binding Words}">
+           
+        </ListBox>
         
     </Grid>
 </Window>

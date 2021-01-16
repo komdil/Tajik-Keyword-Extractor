@@ -1,4 +1,5 @@
 ﻿using Model;
+using Model.DataSet.Json;
 using Model.KEA;
 using Model.KEA.Document;
 using Model.KEA.TFIDF;
@@ -29,6 +30,8 @@ namespace WPFClient
     {
         public MainWindow()
         {
+            JsonContext jsonContext = new JsonContext();
+            KEAGlobal.InitiateKEAGlobal(jsonContext);
             InitializeComponent();
             DataContext = this;
         }
@@ -58,20 +61,7 @@ namespace WPFClient
         {
             if (InputText == "")
                 return;
-
-            List<string> fixedInput = GetListFromText(InputText.ToLower());
-            var document = new Document(InputText.ToLower()) { Name = "TestDoc" };
-            var docs = new List<Document>();
-
-            foreach (var word in document.Sentences.SelectMany(a => a.Words))
-            {
-                TF tf = new TF(word, document);
-                IDF idf = new IDF(docs, word);
-                TF_IDF tF_IDF = new TF_IDF(tf.CalculateTF(), idf.CalculateIDF());
-                tF_IDF.CalculateTF_IDF();
-                // Words.Add(new ResultWord { Word = word.Value, IDF = idf.IDFValue, TF = tf.TFValue, TF_IDF = tF_IDF.TF_IDFValue });
-            }
-            Words = Words.Where(a => a.TF != 0).ToList();
+            Words = KEAGlobal.KEAManager.GetSimpleKeywordsIncludingIDF(InputText);
         }
 
         List<string> GetListFromText(string inputText)
@@ -90,8 +80,8 @@ namespace WPFClient
 
         public string InputText { get; set; }
 
-        List<ResultWord> words = new List<ResultWord>();
-        public List<ResultWord> Words { get { return words; } set { words = value; Notify("Words"); } }
+        List<string> words = new List<string>();
+        public List<string> Words { get { return words; } set { words = value; Notify("Words"); } }
     }
 
     public class ResultWord

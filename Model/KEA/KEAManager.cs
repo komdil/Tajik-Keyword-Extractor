@@ -18,11 +18,11 @@ namespace Model.KEA
             Context = context;
         }
 
-        public List<string> GetSimpleKeywords(string text)
+        public List<string> GetSimpleKeywordsIncludingIDF(string text)
         {
             var document = new Document.Document(text);
             document.Sentences.ForEach(s => s.NormalizeWords());
-            var tfIdf = KEAGlobal.TFIDFManager.CalculateTFIDF(new List<Document.Document> { document }, document).OrderByDescending(s => s.TF_IDF).ThenByDescending(s => s.TF).ThenByDescending(s => s.IDF);
+            var tfIdf = KEAGlobal.TFIDFManager.CalculateTFIDFWithIDF(new List<Document.Document> { document }, document).OrderByDescending(s => s.TF_IDF).ThenByDescending(s => s.TF).ThenByDescending(s => s.IDF);
             return tfIdf.Select(s => s.Word).ToList();
         }
 

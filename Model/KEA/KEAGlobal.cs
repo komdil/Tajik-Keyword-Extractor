@@ -8,7 +8,7 @@ namespace Model.KEA
 {
     public static class KEAGlobal
     {
-        static IWordContext Context;
+        public static IWordContext Context;
         static bool isInitiated;
         public static void InitiateKEAGlobal(IWordContext context)
         {

@@ -20,6 +20,31 @@ namespace Model.KEA.TFIDF
             return tFIDFViews;
         }
 
+        public List<TFIDFView> CalculateTFIDFWithIDF(List<Document.Document> documentsDataSet, Document.Document documentToCalculate)
+        {
+            List<TFIDFView> tFIDFViews = new List<TFIDFView>();
+            var wordsOfDocumentToCalculate = documentToCalculate.Sentences.SelectMany(s => s.Words).ToList();
+
+            foreach (var wordToCalculate in wordsOfDocumentToCalculate.GroupBy(s => s.Value).Select(s => s.FirstOrDefault()))
+            {
+                var tFValue = CalCulateTF(wordToCalculate, documentToCalculate);
+                double idfValue;
+                var res = KEAGlobal.Context.WordsWithIDF.FirstOrDefault(s => s.Content == wordToCalculate.Value);
+
+                if (res != null)
+                {
+                    idfValue = res.IDF;
+                }
+                else
+                {
+                    idfValue = CalCulateIDF(documentsDataSet, wordToCalculate);
+                }
+                tFIDFViews.Add(CalculateTFIDF(wordToCalculate.Value, idfValue, tFValue));
+            }
+
+            return tFIDFViews;
+        }
+
         public TFIDFView CalculateTFIDF(string word, double idfValue, double tFValue)
         {
             TF_IDF tF_IDF = new TF_IDF(tFValue, idfValue);
