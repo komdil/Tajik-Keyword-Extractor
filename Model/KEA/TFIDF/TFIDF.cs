@@ -1,4 +1,4 @@
-﻿namespace Model.KEA.TFIDF
+﻿namespace TajikKEA.TFIDF
 {
     public class TF_IDF
     {

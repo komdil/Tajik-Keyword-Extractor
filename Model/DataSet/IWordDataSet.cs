@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Model.DataSet
+namespace TajikKEA.DataSet
 {
     public interface IWordsDataSet
     {

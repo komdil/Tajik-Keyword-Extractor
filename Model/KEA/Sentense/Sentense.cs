@@ -1,13 +1,12 @@
-﻿using Model.DataSet.SqlServer;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Model.KEA
+namespace TajikKEA.Sentence
 {
-    public class Sentence
+    public class TajikSentence
     {
-        public Sentence(string content)
+        public TajikSentence(string content)
         {
             Content = content;
             Words = KEAGlobal.SentenseManager.SplitWordsFromSentences(this).ToList();

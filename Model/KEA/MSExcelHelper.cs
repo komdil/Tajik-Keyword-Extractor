@@ -1,11 +1,11 @@
 ﻿using DocumentFormat.OpenXml;
 using DocumentFormat.OpenXml.Packaging;
 using DocumentFormat.OpenXml.Spreadsheet;
-using Model.DataSet;
-using Model.KEA.TFIDF;
 using System.Collections.Generic;
+using TajikKEA.DataSet;
+using TajikKEA.TFIDF;
 
-namespace Model.KEA
+namespace TajikKEA
 {
     public static class MSExcelHelper
     {

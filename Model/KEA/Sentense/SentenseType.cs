@@ -2,9 +2,10 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Model.KEA
+namespace TajikKEA.Sentence
 {
     public enum SentenseType
     {
+
     }
 }

@@ -10,7 +10,14 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Model\Model.csproj" />
+    <ProjectReference Include="..\KEAJsonContext\TajikKEAJsonContext.csproj" />
+    <ProjectReference Include="..\Model\TajikKEA.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="KEA.db">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
 </Project>

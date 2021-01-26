@@ -1,11 +1,9 @@
 ﻿using Newtonsoft.Json;
-using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Text;
 using System.Text.RegularExpressions;
 
-namespace Model.KEA.TextNormilizer
+namespace TajikKEA.TextNormilizer
 {
     public class TextnormilizerManager
     {

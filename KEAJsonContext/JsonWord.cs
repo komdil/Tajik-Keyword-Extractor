@@ -1,10 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
+using TajikKEA.DataSet;
 
-namespace Model.DataSet.Json
+namespace TajikKEAJsonContext
 {
-    public class Word : IWordsDataSet, IWordWithIDF
+    public class JsonWord : IWordsDataSet, IWordWithIDF
     {
         public Guid Guid { get; set; }
 

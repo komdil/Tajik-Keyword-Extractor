@@ -1,11 +1,11 @@
-﻿using Model.DataSet.Json;
-using Model.KEA.TextNormilizer;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
+using TajikKEA.TextNormilizer;
+using TajikKEAJsonContext;
 
 namespace WordTool
 {
@@ -181,8 +181,8 @@ namespace WordTool
                 var newWord = textBox2.Text.Trim().ToLower();
                 var info = textBox1.Text.Trim().ToLower();
                 var textJson = File.ReadAllText(WordsPath);
-                var list = JsonConvert.DeserializeObject<List<Word>>(textJson);
-                list.Add(new Word()
+                var list = JsonConvert.DeserializeObject<List<JsonWord>>(textJson);
+                list.Add(new JsonWord()
                 {
                     Guid = Guid.NewGuid(),
                     Content = newWord,

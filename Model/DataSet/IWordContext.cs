@@ -1,7 +1,7 @@
 ﻿
 using System.Collections.Generic;
 
-namespace Model.DataSet
+namespace TajikKEA.DataSet
 {
     public interface IWordContext
     {

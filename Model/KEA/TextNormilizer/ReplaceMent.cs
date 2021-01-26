@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Model.KEA.TextNormilizer
+namespace TajikKEA.TextNormilizer
 {
     public class ReplaceMent
     {

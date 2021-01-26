@@ -1,10 +1,11 @@
-﻿using Model.DataSet;
-using Model.KEA.Document;
-using Model.KEA.TextNormilizer;
-using Model.KEA.TFIDF;
-using System;
+﻿using System;
+using TajikKEA.DataSet;
+using TajikKEA.Document;
+using TajikKEA.Sentence;
+using TajikKEA.TextNormilizer;
+using TajikKEA.TFIDF;
 
-namespace Model.KEA
+namespace TajikKEA
 {
     public static class KEAGlobal
     {

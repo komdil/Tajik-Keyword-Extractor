@@ -3,13 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30413.136
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Model", "Model\Model.csproj", "{F52981DE-1821-4FC7-8C28-1F72D58B0843}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TajikKEA", "Model\TajikKEA.csproj", "{F52981DE-1821-4FC7-8C28-1F72D58B0843}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WPFClient", "WPFClient\WPFClient.csproj", "{4F0096F4-6563-46EE-9484-CE264E647D73}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TesterConsole", "TesterConsole\TesterConsole.csproj", "{9931D1F2-D586-43FB-890B-F999C1CCC051}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WordTool", "StopWordMaker\WordTool.csproj", "{1DD00B85-68DA-444F-A2A7-E8D17EE325A0}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TajikKEAJsonContext", "KEAJsonContext\TajikKEAJsonContext.csproj", "{A1AF5F52-2460-4846-BB9B-A9564AB7D913}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{1DD00B85-68DA-444F-A2A7-E8D17EE325A0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1DD00B85-68DA-444F-A2A7-E8D17EE325A0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1DD00B85-68DA-444F-A2A7-E8D17EE325A0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A1AF5F52-2460-4846-BB9B-A9564AB7D913}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A1AF5F52-2460-4846-BB9B-A9564AB7D913}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A1AF5F52-2460-4846-BB9B-A9564AB7D913}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A1AF5F52-2460-4846-BB9B-A9564AB7D913}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

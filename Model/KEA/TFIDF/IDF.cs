@@ -2,17 +2,17 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Model.KEA.TFIDF
+namespace TajikKEA.TFIDF
 {
     public class IDF
     {
-        public IDF(IEnumerable<Document.Document> documents, Word termin)
+        public IDF(IEnumerable<Document.TajikDocument> documents, Word termin)
         {
             Documents = documents;
             Termin = termin;
         }
 
-        public IEnumerable<Document.Document> Documents { get; set; }
+        public IEnumerable<Document.TajikDocument> Documents { get; set; }
 
         public Word Termin { get; set; }
 

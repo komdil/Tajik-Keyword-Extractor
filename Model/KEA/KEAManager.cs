@@ -1,14 +1,12 @@
-﻿using Model.DataSet;
-using Model.KEA.Document;
-using Model.KEA.TFIDF;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using TajikKEA.DataSet;
+using TajikKEA.TFIDF;
 
-namespace Model.KEA
+namespace TajikKEA
 {
     public class KEAManager
     {
@@ -20,13 +18,13 @@ namespace Model.KEA
 
         public List<string> GetSimpleKeywordsIncludingIDF(string text)
         {
-            var document = new Document.Document(text);
+            var document = new Document.TajikDocument(text);
             document.Sentences.ForEach(s => s.NormalizeWords());
-            var tfIdf = KEAGlobal.TFIDFManager.CalculateTFIDFWithIDF(new List<Document.Document> { document }, document).OrderByDescending(s => s.TF_IDF).ThenByDescending(s => s.TF).ThenByDescending(s => s.IDF);
+            var tfIdf = KEAGlobal.TFIDFManager.CalculateTFIDFWithIDF(new List<Document.TajikDocument> { document }, document).OrderByDescending(s => s.TF_IDF).ThenByDescending(s => s.TF).ThenByDescending(s => s.IDF);
             return tfIdf.Select(s => s.Word).ToList();
         }
 
-        public Document.Document GetDocument(string path, bool normalize = false)
+        public Document.TajikDocument GetDocument(string path, bool normalize = false)
         {
             try
             {
@@ -36,7 +34,7 @@ namespace Model.KEA
                 {
                     KEAGlobal.Logger.Log("Something wrong with this book " + path);
                 }
-                var document = new Document.Document(text);
+                var document = new Document.TajikDocument(text);
                 document.Name = path;
                 if (normalize)
                 {
@@ -47,7 +45,7 @@ namespace Model.KEA
             catch (Exception ex)
             {
                 KEAGlobal.Logger.Log("Error on reading book " + path + ex.Message);
-                return new Document.Document("No content");
+                return new Document.TajikDocument("No content");
             }
         }
 

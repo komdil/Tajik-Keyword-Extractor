@@ -1,8 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
+using TajikKEA.DataSet;
 
-namespace Model.DataSet.Json
+namespace TajikKEAJsonContext
 {
     public class JsonStopWord : IWordsDataSet
     {

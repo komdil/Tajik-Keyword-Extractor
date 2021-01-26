@@ -1,19 +1,19 @@
-﻿using Model.DataSet;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
+using TajikKEA.Sentence;
 
-namespace Model.KEA.Document
+namespace TajikKEA.Document
 {
-    public class DocumentManager 
+    public class DocumentManager
     {
-        public List<Sentence> SplitSentencesFromDoc(Document document)
+        public List<TajikSentence> SplitSentencesFromDoc(TajikDocument document)
         {
-            List<Sentence> sentenceInstanses = new List<Sentence>();
+            List<TajikSentence> sentenceInstanses = new List<TajikSentence>();
             var sentences = Regex.Split(document.Content, Statics.SplitSentensePattern).Where(a => a != "");
             foreach (var sentense in sentences)
             {
-                sentenceInstanses.Add(new Sentence(sentense));
+                sentenceInstanses.Add(new TajikSentence(sentense));
             }
 
             return sentenceInstanses;

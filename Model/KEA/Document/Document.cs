@@ -1,10 +1,11 @@
 ﻿using System.Collections.Generic;
+using TajikKEA.Sentence;
 
-namespace Model.KEA.Document
+namespace TajikKEA.Document
 {
-    public class Document
+    public class TajikDocument
     {
-        public Document(string content)
+        public TajikDocument(string content)
         {
             Content = KEAGlobal.TextnormilizerManager.RemoveUnnassesarySpaces(content);
             Content = KEAGlobal.TextnormilizerManager.MakeReplaceMent(Content);
@@ -15,7 +16,7 @@ namespace Model.KEA.Document
 
         public string Content { get; set; }
 
-        public List<Sentence> Sentences { get; set; }
+        public List<TajikSentence> Sentences { get; set; }
 
         public override string ToString()
         {

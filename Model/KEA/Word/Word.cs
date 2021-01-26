@@ -1,4 +1,4 @@
-﻿namespace Model.KEA
+﻿namespace TajikKEA
 {
     public class Word
     {

@@ -1,10 +1,10 @@
 ﻿using iTextSharp.text.pdf;
 using iTextSharp.text.pdf.parser;
-using Model.KEA.TextNormilizer;
 using System.Linq;
 using System.Text;
+using TajikKEA.TextNormilizer;
 
-namespace Model.KEA
+namespace TajikKEA
 {
     public class PDFHelper
     {

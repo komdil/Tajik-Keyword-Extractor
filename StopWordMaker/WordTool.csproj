@@ -10,6 +10,7 @@
     <OutputPath>..\Output\WordTool</OutputPath>
   </PropertyGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Model\Model.csproj" />
+    <ProjectReference Include="..\KEAJsonContext\TajikKEAJsonContext.csproj" />
+    <ProjectReference Include="..\Model\TajikKEA.csproj" />
   </ItemGroup>
 </Project>

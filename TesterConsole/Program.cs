@@ -1,16 +1,12 @@
-﻿using Model.DataSet.Json;
-using Model.DataSet.SqlServer;
-using Model.KEA;
-using Model.KEA.Document;
-using Model.KEA.TFIDF;
-using Model.KEADataSet.Sqlite;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
+using TajikKEA;
+using TajikKEA.Document;
+using TajikKEAJsonContext;
 
 namespace TesterConsole
 {
@@ -108,15 +104,15 @@ namespace TesterConsole
             //}
         }
 
-        static Task<Document>[] ReadBooks()
+        static Task<TajikDocument>[] ReadBooks()
         {
             var Files = new DirectoryInfo(@"D:\master degree\master\MAQOLA2\IDF");
-            List<Task<Document>> tasks = new List<Task<Document>>();
+            List<Task<TajikDocument>> tasks = new List<Task<TajikDocument>>();
             var allFiles = Files.GetFiles();
             KEAGlobal.Logger.Log($"Count of file: {allFiles.Count()}");
             foreach (var item in allFiles)
             {
-                var task = new Task<Document>(() =>
+                var task = new Task<TajikDocument>(() =>
                 {
                     var doc = KEAGlobal.KEAManager.GetDocument(item.FullName);
                     KEAGlobal.Logger.Log($"Readed file: {item.FullName}");
@@ -131,7 +127,7 @@ namespace TesterConsole
 
         static void Splitwords()
         {
-            var AllWords = JsonConvert.DeserializeObject<List<Model.DataSet.Json.Word>>(File.ReadAllText("DataSet\\Json\\dataset.json"));
+            var AllWords = JsonConvert.DeserializeObject<List<JsonWord>>(File.ReadAllText("DataSet\\Json\\dataset.json"));
 
             var bandaks = AllWords.Where(w => w.IsBandak());
             var text = JsonConvert.SerializeObject(bandaks, Formatting.Indented);
@@ -148,79 +144,6 @@ namespace TesterConsole
             var words = AllWords.Where(s => !s.IsBandak() && !s.IsJonishin() && !s.IsPeshoyand());
             text = JsonConvert.SerializeObject(words, Formatting.Indented);
             File.WriteAllText("Words.json", text);
-
-        }
-
-        static void AddBooks()
-        {
-            var sqlContext = new SqlServerContext();
-            var Files = new DirectoryInfo(@"C:\Users\Owner\Desktop\master\MAQOLA2\IDF");
-            var books = sqlContext.BookDataSets.ToList();
-            foreach (var item in Files.GetFiles())
-            {
-                if (books.Any(a => a.Name == item.Name))
-                    continue;
-                PDFHelper pDFHelper = new PDFHelper();
-                var text = pDFHelper.ReadPdfFile(item.FullName);
-                sqlContext.BookDataSets.Add(new BookDataSet { Guid = Guid.NewGuid(), Name = item.Name, Content = text });
-                sqlContext.SaveChanges();
-            }
-        }
-
-        static void AddFromSqlite()
-        {
-            WordDbSqliteContext wordDbContext = new WordDbSqliteContext();
-            var allwords = wordDbContext.word.Where(s => s.dictionary_id == "2").ToList().GroupBy(g => g.word).Select(s => s.FirstOrDefault());
-            SqlServerContext sqlServerContext = new SqlServerContext();
-            foreach (var word in allwords)
-            {
-                WordDataSet wordDataSet = new WordDataSet() { Guid = Guid.NewGuid() };
-                wordDataSet.Content = word.word;
-                wordDataSet.ContentInfo = word.article;
-                sqlServerContext.Add(wordDataSet);
-            }
-            sqlServerContext.SaveChanges();
-        }
-
-        static SqlServerContext ConvertFromJsonToSQLServer()
-        {
-            SqlServerContext sqlServerContext = new SqlServerContext();
-            JsonContext jsonContext = new JsonContext();
-
-            var peshoyands = jsonContext.Peshoyands;
-            foreach (var item in peshoyands)
-            {
-                sqlServerContext.Add(new PeshoyandDataSet() { Guid = item.Guid, ContentInfo = item.ContentInfo, Content = item.Content });
-            }
-
-            var jonishins = jsonContext.Jonishins;
-            foreach (var item in jonishins)
-            {
-                sqlServerContext.Add(new JonishinDataSet() { Guid = item.Guid, ContentInfo = item.ContentInfo, Content = item.Content });
-            }
-
-            var bandaks = jsonContext.Bandaks;
-            foreach (var item in bandaks)
-            {
-                sqlServerContext.Add(new BandakDataSet() { Guid = item.Guid, ContentInfo = item.ContentInfo, Content = item.Content });
-            }
-            sqlServerContext.SaveChanges();
-
-
-            int count = 0;
-            var allwords = jsonContext.Words;
-            foreach (var item in allwords)
-            {
-                if (count > 300)
-                {
-                    sqlServerContext.SaveChanges();
-                    count = 0;
-                }
-                sqlServerContext.Add(new WordDataSet() { Guid = item.Guid, ContentInfo = item.ContentInfo, Content = item.Content });
-                count++;
-            }
-            sqlServerContext.SaveChanges();
-            return sqlServerContext;
         }
     }
 }

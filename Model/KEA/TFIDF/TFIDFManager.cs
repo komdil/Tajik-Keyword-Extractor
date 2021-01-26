@@ -1,11 +1,11 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 
-namespace Model.KEA.TFIDF
+namespace TajikKEA.TFIDF
 {
     public class TFIDFManager
     {
-        public List<TFIDFView> CalculateTFIDF(List<Document.Document> documentsDataSet, Document.Document documentToCalculate)
+        public List<TFIDFView> CalculateTFIDF(List<Document.TajikDocument> documentsDataSet, Document.TajikDocument documentToCalculate)
         {
             List<TFIDFView> tFIDFViews = new List<TFIDFView>();
             var wordsOfDocumentToCalculate = documentToCalculate.Sentences.SelectMany(s => s.Words).ToList();
@@ -20,7 +20,7 @@ namespace Model.KEA.TFIDF
             return tFIDFViews;
         }
 
-        public List<TFIDFView> CalculateTFIDFWithIDF(List<Document.Document> documentsDataSet, Document.Document documentToCalculate)
+        public List<TFIDFView> CalculateTFIDFWithIDF(List<Document.TajikDocument> documentsDataSet, Document.TajikDocument documentToCalculate)
         {
             List<TFIDFView> tFIDFViews = new List<TFIDFView>();
             var wordsOfDocumentToCalculate = documentToCalculate.Sentences.SelectMany(s => s.Words).ToList();
@@ -52,13 +52,13 @@ namespace Model.KEA.TFIDF
             return new TFIDFView(word, idfValue, tFValue, tfIdfValue);
         }
 
-        public double CalCulateTF(Word wordToCalculate, Document.Document documentToCalculate)
+        public double CalCulateTF(Word wordToCalculate, Document.TajikDocument documentToCalculate)
         {
             TF tF = new TF(wordToCalculate, documentToCalculate);
             return tF.CalculateTF();
         }
 
-        public double CalCulateIDF(List<Document.Document> documentsDataSet, Word wordToCalculate)
+        public double CalCulateIDF(List<Document.TajikDocument> documentsDataSet, Word wordToCalculate)
         {
             IDF iDF = new IDF(documentsDataSet, wordToCalculate);
             return iDF.CalculateIDF();

@@ -1,10 +1,9 @@
-﻿using Model.DataSet;
-using Model.KEA.Document;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
+using TajikKEA.DataSet;
 
-namespace Model.KEA
+namespace TajikKEA.Sentence
 {
     public class SentenseManager : KEAManager
     {
@@ -13,7 +12,7 @@ namespace Model.KEA
 
         }
 
-        public IEnumerable<Word> SplitWordsFromSentences(Sentence sentence)
+        public IEnumerable<Word> SplitWordsFromSentences(TajikSentence sentence)
         {
             List<Word> wordsInstances = new List<Word>();
             var words = sentence.Content.Replace(" - ", "-").Split(' ').GroupBy(w => w).Select(s => s.FirstOrDefault());
@@ -24,7 +23,7 @@ namespace Model.KEA
             return wordsInstances;
         }
 
-        public void NormalizeWords(IEnumerable<Word> words, Sentence sentence)
+        public void NormalizeWords(IEnumerable<Word> words, TajikSentence sentence)
         {
             ShakliJam(words);
             Ishorakuni(words);
@@ -142,7 +141,7 @@ namespace Model.KEA
             }
         }
 
-        void RemoveUnnassesaryWords(IEnumerable<Word> words, Sentence sentence)
+        void RemoveUnnassesaryWords(IEnumerable<Word> words, TajikSentence sentence)
         {
             foreach (var item in words)
             {

@@ -1,10 +1,10 @@
 ﻿using System.Linq;
 
-namespace Model.KEA.TFIDF
+namespace TajikKEA.TFIDF
 {
     public class TF
     {
-        public TF(Word termin, Document.Document document)
+        public TF(Word termin, Document.TajikDocument document)
         {
             Termin = termin;
             Document = document;
@@ -12,7 +12,7 @@ namespace Model.KEA.TFIDF
 
         public Word Termin { get; set; }
 
-        public Document.Document Document { get; set; }
+        public Document.TajikDocument Document { get; set; }
 
         public double CalculateTF()
         {
