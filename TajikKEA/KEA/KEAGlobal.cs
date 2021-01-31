@@ -117,14 +117,14 @@ namespace TajikKEA
             }
         }
 
-        static Logger logger;
-        public static Logger Logger
+        static TajikKEALogger logger;
+        public static TajikKEALogger Logger
         {
             get
             {
                 if (logger == null)
                 {
-                    logger = new Logger();
+                    logger = new TajikKEALogger();
                 }
                 return logger;
             }

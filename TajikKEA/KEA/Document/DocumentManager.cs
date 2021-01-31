@@ -5,8 +5,13 @@ using TajikKEA.Sentence;
 
 namespace TajikKEA.Document
 {
+    /// <summary/>
     public class DocumentManager
     {
+        /// <summary>
+        /// RU: Соберёт предложения из документа
+        /// TJ: Аз матн ҷумлаҳоо ҷамъ мекунад 
+        /// </summary>
         public List<TajikSentence> SplitSentencesFromDoc(TajikDocument document)
         {
             List<TajikSentence> sentenceInstanses = new List<TajikSentence>();

@@ -7,10 +7,7 @@ namespace TajikKEA.Sentence
 {
     public class SentenseManager : KEAManager
     {
-        public SentenseManager(IWordContext context) : base(context)
-        {
-
-        }
+        public SentenseManager(IWordContext context) : base(context) { }
 
         public IEnumerable<Word> SplitWordsFromSentences(TajikSentence sentence)
         {
@@ -167,9 +164,9 @@ namespace TajikKEA.Sentence
                 }
             }
             if (!Context.Words.Any(s => s.Content == word) ||
-                Context.Bandaks.Any(s => s.Content == word) ||
-                Context.Peshoyands.Any(s => s.Content == word) ||
-                Context.Jonishins.Any(s => s.Content == word))
+                Context.Suffixes.Any(s => s.Content == word) ||
+                Context.Prepositions.Any(s => s.Content == word) ||
+                Context.Pronouns.Any(s => s.Content == word))
             {
                 return true;
             }
