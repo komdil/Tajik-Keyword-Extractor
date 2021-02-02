@@ -6,7 +6,7 @@ namespace TajikKEA.TFIDF
 {
     public class IDF
     {
-        public IDF(IEnumerable<Document.TajikDocument> documents, Word termin)
+        public IDF(IEnumerable<Document.TajikDocument> documents, TajikWord termin)
         {
             Documents = documents;
             Termin = termin;
@@ -14,7 +14,7 @@ namespace TajikKEA.TFIDF
 
         public IEnumerable<Document.TajikDocument> Documents { get; set; }
 
-        public Word Termin { get; set; }
+        public TajikWord Termin { get; set; }
 
         public double CalculateIDF()
         {

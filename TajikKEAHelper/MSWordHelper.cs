@@ -1,10 +1,7 @@
 ﻿using DocumentFormat.OpenXml.Packaging;
 using DocumentFormat.OpenXml.Wordprocessing;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
-namespace TajikKEA
+namespace TajikKEAHelper
 {
     public static class MSWordHelper
     {

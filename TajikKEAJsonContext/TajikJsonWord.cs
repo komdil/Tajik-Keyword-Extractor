@@ -3,7 +3,7 @@ using TajikKEA.DataSet;
 
 namespace TajikKEAJsonContext
 {
-    public class JsonWord : IWordsDataSet, IWordWithIDF
+    public class TajikJsonWord : IWordsDataSet
     {
         public Guid Guid { get; set; }
 

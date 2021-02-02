@@ -9,7 +9,8 @@ namespace TajikKEA
 {
     public static class KEAGlobal
     {
-        public static IWordContext Context;
+        public static IWordContext Context { get; set; }
+
         static bool isInitiated;
         public static void InitiateKEAGlobal(IWordContext context)
         {
@@ -43,20 +44,6 @@ namespace TajikKEA
                     keaManager = new KEAManager(Context);
                 }
                 return keaManager;
-            }
-        }
-
-        static PDFHelper pDFHelper;
-        public static PDFHelper PDFHelper
-        {
-            get
-            {
-                if (pDFHelper == null)
-                {
-                    CheckInitiateStatus();
-                    pDFHelper = new PDFHelper();
-                }
-                return pDFHelper;
             }
         }
 

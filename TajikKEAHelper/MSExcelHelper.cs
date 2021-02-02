@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using TajikKEA.DataSet;
 using TajikKEA.TFIDF;
 
-namespace TajikKEA
+namespace TajikKEAHelper
 {
     public static class MSExcelHelper
     {
@@ -83,7 +83,7 @@ namespace TajikKEA
             }
         }
 
-        public static void ExtractResult(string excelPath, List<IWordWithIDF> results)
+        public static void ExtractResult(string excelPath, List<IWordsDataSet> results)
         {
             using (SpreadsheetDocument xl = SpreadsheetDocument.Create(excelPath, SpreadsheetDocumentType.Workbook))
             {

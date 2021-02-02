@@ -26,7 +26,7 @@ namespace TajikKEA.Sentence
         /// RU: Слова предложения
         /// TJ: Калимаҳои ҷумла 
         /// </summary>
-        public List<Word> Words { get; set; }
+        public List<TajikWord> Words { get; set; }
 
         public override string ToString()
         {

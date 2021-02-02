@@ -5,101 +5,112 @@ using TajikKEA.DataSet;
 
 namespace TajikKEA.Sentence
 {
+    /// <summary/>
     public class SentenseManager : KEAManager
     {
         public SentenseManager(IWordContext context) : base(context) { }
 
-        public IEnumerable<Word> SplitWordsFromSentences(TajikSentence sentence)
+        /// <summary>
+        /// RU: Соберет слова из предложения
+        /// TJ: Гирифтани калимаҳо аз ҷумла
+        /// </summary>
+        public IEnumerable<TajikWord> SplitWordsFromSentences(TajikSentence sentence)
         {
-            List<Word> wordsInstances = new List<Word>();
+            List<TajikWord> wordsInstances = new List<TajikWord>();
             var words = sentence.Content.Replace(" - ", "-").Split(' ').GroupBy(w => w).Select(s => s.FirstOrDefault());
             foreach (var word in words)
             {
-                wordsInstances.Add(new Word(Regex.Replace(word, Statics.SentenceEndSymbols, string.Empty)));
+                wordsInstances.Add(new TajikWord(Regex.Replace(word, Statics.SentenceEndSymbols, string.Empty)));
             }
             return wordsInstances;
         }
 
-        public void NormalizeWords(IEnumerable<Word> words, TajikSentence sentence)
+        /// <summary>
+        /// RU: Нормализация текста
+        /// TJ: Нормаликунонии матн
+        /// </summary>
+        public void NormalizeWords(IEnumerable<TajikWord> words, TajikSentence sentence)
         {
-            ShakliJam(words);
-            Ishorakuni(words);
-            BandakiI(words);
-            BandakiE(words);
-            BandakiU(words);
-            RemoveUnnassesaryWords(words.ToList(), sentence);
+            foreach (var word in words)
+            {
+                ShakliJam(word);
+                Ishorakuni(word);
+                BandakiI(word);
+                BandakiE(word);
+                BandakiU(word);
+                RemoveUnnassesaryWords(word, sentence);
+            }
         }
 
-        string[] pasoyandJam = new string[] { "он", "ён", "ҳо" };
-        void ShakliJam(IEnumerable<Word> words)
+        readonly string[] pasoyandJam = new string[] { "он", "ён", "ҳо" };
+        void ShakliJam(TajikWord word)
         {
-            var wordsJam = words.Where(s => pasoyandJam.Any(d => s.Value.ToLower().EndsWith(d)));
-            foreach (var item in wordsJam)
+            if (pasoyandJam.Any(s => word.Value.EndsWith(s)))
             {
-                var splited = item.Value.Substring(0, item.Value.Length - 2);
+                var splited = word.Value.Substring(0, word.Value.Length - 2);
                 if (splited.Length > 1 && Context.Words.Any(s => s.Content == splited))
                 {
-                    item.Value = splited;
+                    word.Value = splited;
                 }
             }
         }
 
-        string[] ishorakuni = new string[] { "ро", "ҳоро", "онро", "ёнро" };
-        void Ishorakuni(IEnumerable<Word> words)
+        readonly string[] ishorakuni = new string[] { "ро", "ҳоро", "онро", "ёнро" };
+        void Ishorakuni(TajikWord word)
         {
             foreach (var ishora in ishorakuni)
             {
-                foreach (var item in words.Where(s => s.Value.ToLower().EndsWith(ishora)))
+                if (word.Value.EndsWith(ishora))
                 {
-                    var splited = item.Value.Substring(0, item.Value.Length - ishora.Length);
+                    var splited = word.Value.Substring(0, word.Value.Length - ishora.Length);
                     if (splited.Length > 2 && Context.Words.Any(s => s.Content == splited))
                     {
-                        item.Value = splited;
+                        word.Value = splited;
                     }
                 }
             }
         }
 
-        string[] bandakiI = new string[] { "и", "ҳои", "они", "ёни" };
-        void BandakiI(IEnumerable<Word> words)
+        readonly string[] bandakiI = new string[] { "и", "ҳои", "они", "ёни" };
+        void BandakiI(TajikWord word)
         {
             foreach (var bandak in bandakiI)
             {
-                foreach (var item in words.Where(s => s.Value.EndsWith(bandak)))
+                if (word.Value.EndsWith(bandak))
                 {
-                    var splited = item.Value.Substring(0, item.Value.Length - bandak.Length);
+                    var splited = word.Value.Substring(0, word.Value.Length - bandak.Length);
                     if (splited.Length > 2 && DataSetContains(splited, out string bandakToEnd))
                     {
                         if (bandakToEnd != null)
                         {
-                            item.Value = bandakToEnd;
+                            word.Value = bandakToEnd;
                         }
                         else
                         {
-                            item.Value = splited;
+                            word.Value = splited;
                         }
                     }
                 }
             }
         }
 
-        string[] bandakiE = new string[] { "е", "ҳое", "оне", "ёне" };
-        void BandakiE(IEnumerable<Word> words)
+        readonly string[] bandakiE = new string[] { "е", "ҳое", "оне", "ёне" };
+        void BandakiE(TajikWord word)
         {
             foreach (var bandak in bandakiE)
             {
-                foreach (var item in words.Where(s => s.Value.EndsWith(bandak)))
+                if (word.Value.EndsWith(bandak))
                 {
-                    var splited = item.Value.Substring(0, item.Value.Length - bandak.Length);
+                    var splited = word.Value.Substring(0, word.Value.Length - bandak.Length);
                     if (splited.Length > 2 && DataSetContains(splited, out string bandakToEnd))
                     {
                         if (bandakToEnd != null)
                         {
-                            item.Value = bandakToEnd;
+                            word.Value = bandakToEnd;
                         }
                         else
                         {
-                            item.Value = splited;
+                            word.Value = splited;
                         }
                     }
                 }
@@ -122,31 +133,28 @@ namespace TajikKEA.Sentence
             return Context.Words.Any(s => s.Content == splited);
         }
 
-        string[] bandakiU = new string[] { "ҳову", "ону", "Ю", "у", "ёну", "ҳоеро" };
-        void BandakiU(IEnumerable<Word> words)
+        readonly string[] bandakiU = new string[] { "ҳову", "ону", "Ю", "у", "ёну", "ҳоеро" };
+        void BandakiU(TajikWord word)
         {
             foreach (var bandak in bandakiU)
             {
-                foreach (var item in words.Where(s => s.Value.ToLower().EndsWith(bandak)))
+                if (word.Value.EndsWith(bandak))
                 {
-                    var splited = item.Value.Substring(0, item.Value.Length - bandak.Length);
+                    var splited = word.Value.Substring(0, word.Value.Length - bandak.Length);
                     if (splited.Length > 2 && Context.Words.Any(s => s.Content == splited))
                     {
-                        item.Value = splited;
+                        word.Value = splited;
                     }
                 }
             }
         }
 
-        void RemoveUnnassesaryWords(IEnumerable<Word> words, TajikSentence sentence)
+        void RemoveUnnassesaryWords(TajikWord word, TajikSentence sentence)
         {
-            foreach (var item in words)
+            var shouldBeRemoved = ShouldBeRemoved(word.Value);
+            if (shouldBeRemoved)
             {
-                var shouldBeRemoved = ShouldBeRemoved(item.Value);
-                if (shouldBeRemoved)
-                {
-                    sentence.Words.Remove(item);
-                }
+                sentence.Words.Remove(word);
             }
         }
 

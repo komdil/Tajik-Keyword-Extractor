@@ -16,7 +16,7 @@ namespace WPFClient
     {
         public MainWindow()
         {
-            JsonContext jsonContext = new JsonContext();
+            TajikKEAJsonContext.TajikKEAJsonContext jsonContext = new TajikKEAJsonContext.TajikKEAJsonContext();
             KEAGlobal.InitiateKEAGlobal(jsonContext);
             InitializeComponent();
             DataContext = this;

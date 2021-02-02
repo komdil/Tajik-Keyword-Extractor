@@ -14,10 +14,13 @@ namespace TesterConsole
     {
         static void Main(string[] args)
         {
-            JsonContext jsonContext = new JsonContext();
-            KEAGlobal.Logger.OnLog += Logger_OnLog;
-            KEAGlobal.InitiateKEAGlobal(jsonContext);
-            MSExcelHelper.ExtractResult($"WordsWithIDF.csv", jsonContext.WordsWithIDF.OrderByDescending(d => d.IDF).ToList());
+            //TajikKEAJsonContext.TajikKEAJsonContext jsonContext = new TajikKEAJsonContext.TajikKEAJsonContext();
+            //KEAGlobal.Logger.OnLog += Logger_OnLog;
+            //KEAGlobal.InitiateKEAGlobal(jsonContext);
+            //var file = new DirectoryInfo(@"C:/Users/komdil/Desktop/e").GetFiles().FirstOrDefault();
+            //var results = KEAGlobal.KEAManager.GetTFIDFFromFile(file);
+            //var c = results.Value.OrderByDescending(s => s.TF_IDF).ToList().Take(30).ToList();
+            //MSExcelHelper.ExtractResult("result2.csv", c);
 
             //Task.Run(new Action(() =>
             //{
@@ -104,30 +107,30 @@ namespace TesterConsole
             //}
         }
 
-        static Task<TajikDocument>[] ReadBooks()
-        {
-            var Files = new DirectoryInfo(@"D:\master degree\master\MAQOLA2\IDF");
-            List<Task<TajikDocument>> tasks = new List<Task<TajikDocument>>();
-            var allFiles = Files.GetFiles();
-            KEAGlobal.Logger.Log($"Count of file: {allFiles.Count()}");
-            foreach (var item in allFiles)
-            {
-                var task = new Task<TajikDocument>(() =>
-                {
-                    var doc = KEAGlobal.KEAManager.GetDocument(item.FullName);
-                    KEAGlobal.Logger.Log($"Readed file: {item.FullName}");
-                    return doc;
-                });
-                task.Start();
-                tasks.Add(task);
-            }
+        //static Task<TajikDocument>[] ReadBooks()
+        //{
+        //    var Files = new DirectoryInfo(@"D:\master degree\master\MAQOLA2\IDF");
+        //    List<Task<TajikDocument>> tasks = new List<Task<TajikDocument>>();
+        //    var allFiles = Files.GetFiles();
+        //    KEAGlobal.Logger.Log($"Count of file: {allFiles.Count()}");
+        //    foreach (var item in allFiles)
+        //    {
+        //        var task = new Task<TajikDocument>(() =>
+        //        {
+        //            var doc = KEAGlobal.KEAManager.GetDocument(item.FullName);
+        //            KEAGlobal.Logger.Log($"Readed file: {item.FullName}");
+        //            return doc;
+        //        });
+        //        task.Start();
+        //        tasks.Add(task);
+        //    }
 
-            return tasks.ToArray();
-        }
+        //    return tasks.ToArray();
+        //}
 
         static void Splitwords()
         {
-            var AllWords = JsonConvert.DeserializeObject<List<JsonWord>>(File.ReadAllText("DataSet\\Json\\dataset.json"));
+            var AllWords = JsonConvert.DeserializeObject<List<TajikJsonWord>>(File.ReadAllText("DataSet\\Json\\dataset.json"));
 
             var bandaks = AllWords.Where(w => w.IsBandak());
             var text = JsonConvert.SerializeObject(bandaks, Formatting.Indented);

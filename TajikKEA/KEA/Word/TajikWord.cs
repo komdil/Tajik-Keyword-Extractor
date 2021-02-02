@@ -1,8 +1,8 @@
 ﻿namespace TajikKEA
 {
-    public class Word
+    public class TajikWord
     {
-        public Word(string value)
+        public TajikWord(string value)
         {
             Value = value;
         }

@@ -1,14 +1,12 @@
-﻿using Newtonsoft.Json;
-using System.Collections.Generic;
-using System.IO;
+﻿using System.Collections.Generic;
 using System.Text.RegularExpressions;
 
 namespace TajikKEA.TextNormilizer
 {
     public class TextnormilizerManager
     {
-        string[] itemsToRemove = new string[] { "“", "»", "«", "”" };
-        string[] itemsToEmptySpace = new string[] { "\n", "–", ";" };
+        readonly string[] itemsToRemove = new string[] { "“", "»", "«", "”" };
+        readonly string[] itemsToEmptySpace = new string[] { "\n", "–", ";" };
         public string RemoveUnnassesarySpaces(string text)
         {
             text = text.ToLower();
@@ -37,15 +35,11 @@ namespace TajikKEA.TextNormilizer
             return text;
         }
 
-        public List<ReplaceMent> ReplaceMents { get; }
+        public IEnumerable<ReplaceMent> ReplaceMents { get; }
 
         public TextnormilizerManager()
         {
-            var json = File.ReadAllText("DataSet\\Json\\Replacement.json");
-            var replaceMent = JsonConvert.DeserializeObject<List<ReplaceMent>>(json);
-            if (replaceMent == null)
-                replaceMent = new List<ReplaceMent>();
-            ReplaceMents = replaceMent;
+            ReplaceMents = KEAGlobal.Context.Replacements;
         }
 
         public string MakeReplaceMent(string text)

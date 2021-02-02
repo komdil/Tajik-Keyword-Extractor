@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
+using TajikKEA;
 using TajikKEA.TextNormilizer;
 using TajikKEAJsonContext;
 
@@ -16,7 +17,7 @@ namespace WordTool
         public const string ReplaceMent = @"..\..\..\Model\DataSet\Json\ReplaceMent.json";
 
         public List<string> NewStopWords { get; set; } = new List<string>();
-        public List<JsonStopWord> StopWords { get; set; }
+        public List<TajikJsonStopWord> StopWords { get; set; }
         public Form1()
         {
             InitializeComponent();
@@ -33,19 +34,19 @@ namespace WordTool
             }
         }
 
-        List<JsonStopWord> GetExistingStopWords()
+        List<TajikJsonStopWord> GetExistingStopWords()
         {
             try
             {
                 var json = File.ReadAllText(StopWordsPath);
-                var res = JsonConvert.DeserializeObject<List<JsonStopWord>>(json);
+                var res = JsonConvert.DeserializeObject<List<TajikJsonStopWord>>(json);
                 if (res == null)
-                    res = new List<JsonStopWord>();
+                    res = new List<TajikJsonStopWord>();
                 return res;
             }
             catch
             {
-                return new List<JsonStopWord>();
+                return new List<TajikJsonStopWord>();
             }
         }
 
@@ -136,7 +137,7 @@ namespace WordTool
             {
                 if (!StopWords.Any(s => s.Content == item))
                 {
-                    var stopWornew = new JsonStopWord { Guid = Guid.NewGuid(), Content = item, ContentInfo = $"СТОП-КАЛИМА: {item}" };
+                    var stopWornew = new TajikJsonStopWord { Guid = Guid.NewGuid(), Content = item, ContentInfo = $"СТОП-КАЛИМА: {item}" };
                     StopWords.Add(stopWornew);
                     listBox2.Items.Add(stopWornew);
                 }
@@ -149,7 +150,7 @@ namespace WordTool
             {
                 if (listBox2.SelectedItem != null)
                 {
-                    var itemToRemove = listBox2.SelectedItem as JsonStopWord;
+                    var itemToRemove = listBox2.SelectedItem as TajikJsonStopWord;
                     StopWords.Remove(itemToRemove);
                     listBox2.Items.Remove(itemToRemove);
                 }
@@ -181,8 +182,8 @@ namespace WordTool
                 var newWord = textBox2.Text.Trim().ToLower();
                 var info = textBox1.Text.Trim().ToLower();
                 var textJson = File.ReadAllText(WordsPath);
-                var list = JsonConvert.DeserializeObject<List<JsonWord>>(textJson);
-                list.Add(new JsonWord()
+                var list = JsonConvert.DeserializeObject<List<TajikJsonWord>>(textJson);
+                list.Add(new TajikJsonWord()
                 {
                     Guid = Guid.NewGuid(),
                     Content = newWord,

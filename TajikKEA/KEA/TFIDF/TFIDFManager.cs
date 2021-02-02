@@ -29,7 +29,7 @@ namespace TajikKEA.TFIDF
             {
                 var tFValue = CalCulateTF(wordToCalculate, documentToCalculate);
                 double idfValue;
-                var res = KEAGlobal.Context.WordsWithIDF.FirstOrDefault(s => s.Content == wordToCalculate.Value);
+                var res = KEAGlobal.Context.Words.FirstOrDefault(s => s.Content == wordToCalculate.Value);
 
                 if (res != null)
                 {
@@ -52,13 +52,13 @@ namespace TajikKEA.TFIDF
             return new TFIDFView(word, idfValue, tFValue, tfIdfValue);
         }
 
-        public double CalCulateTF(Word wordToCalculate, Document.TajikDocument documentToCalculate)
+        public double CalCulateTF(TajikWord wordToCalculate, Document.TajikDocument documentToCalculate)
         {
             TF tF = new TF(wordToCalculate, documentToCalculate);
             return tF.CalculateTF();
         }
 
-        public double CalCulateIDF(List<Document.TajikDocument> documentsDataSet, Word wordToCalculate)
+        public double CalCulateIDF(List<Document.TajikDocument> documentsDataSet, TajikWord wordToCalculate)
         {
             IDF iDF = new IDF(documentsDataSet, wordToCalculate);
             return iDF.CalculateIDF();

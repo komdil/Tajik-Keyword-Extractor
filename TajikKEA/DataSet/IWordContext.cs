@@ -37,5 +37,11 @@ namespace TajikKEA.DataSet
         /// TJ: Стоп-Калимаҳо
         /// </summary>
         IEnumerable<IWordsDataSet> StopWords { get; }
+
+        /// <summary>
+        /// RU: Изминение слов 
+        /// TJ: Ивазкунии калима
+        /// </summary>
+        IEnumerable<ReplaceMent> Replacements { get; }
     }
 }

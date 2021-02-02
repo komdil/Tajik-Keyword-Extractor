@@ -4,13 +4,13 @@ namespace TajikKEA.TFIDF
 {
     public class TF
     {
-        public TF(Word termin, Document.TajikDocument document)
+        public TF(TajikWord termin, Document.TajikDocument document)
         {
             Termin = termin;
             Document = document;
         }
 
-        public Word Termin { get; set; }
+        public TajikWord Termin { get; set; }
 
         public Document.TajikDocument Document { get; set; }
 
