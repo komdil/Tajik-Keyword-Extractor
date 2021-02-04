@@ -47,7 +47,7 @@ namespace WPFClient
         {
             if (InputText == "")
                 return;
-            Words = KEAGlobal.KEAManager.GetSimpleKeywordsIncludingIDF(InputText);
+            Words = KEAGlobal.KEAManager.GetKeywords(InputText, 20);
         }
 
         List<string> GetListFromText(string inputText)
