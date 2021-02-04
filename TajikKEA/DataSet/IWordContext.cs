@@ -43,5 +43,17 @@ namespace TajikKEA.DataSet
         /// TJ: Ивазкунии калима
         /// </summary>
         IEnumerable<ReplaceMent> Replacements { get; }
+
+        /// <summary>
+        /// RU: Категории
+        /// TJ: Категорияҳо
+        /// </summary>
+        IEnumerable<IDFCategory> Categories { get; }
+
+        /// <summary>
+        /// RU: IDF в Категории
+        /// TJ: IDF дар Категорияҳо
+        /// </summary>
+        IEnumerable<IDFCategoryLink> IDFCategories { get; }
     }
 }

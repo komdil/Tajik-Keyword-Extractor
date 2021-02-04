@@ -23,6 +23,10 @@ namespace TajikKEAJsonContext
 
         public IEnumerable<ReplaceMent> Replacements { get; }
 
+        public IEnumerable<IDFCategory> Categories { get; }
+
+        public IEnumerable<IDFCategoryLink> IDFCategories { get; }
+
         public TajikKEAJsonContext()
         {
             AllWords = JsonConvert.DeserializeObject<IEnumerable<TajikJsonWord>>(File.ReadAllText("dataset.json"));

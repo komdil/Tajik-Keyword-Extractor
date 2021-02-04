@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace TajikKEA.DataSet
 {
@@ -28,5 +29,12 @@ namespace TajikKEA.DataSet
         /// TJ: Муҳимияти калима
         /// </summary>
         double IDF { get; set; }
+
+        /// <summary>
+        /// Category links
+        /// RU: Важность слова в категории
+        /// TJ: Муҳимияти калима вобаста аз категорияҳо
+        /// </summary>
+        IEnumerable<IDFCategoryLink> IDFCategoryLinks { get; set; }
     }
 }
