@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 
-namespace TajikKEA.TFIDF
+namespace TajikKEAHelper.TFIDF
 {
     public class TFIDFManager
     {

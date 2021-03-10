@@ -2,8 +2,8 @@
 using DocumentFormat.OpenXml.Packaging;
 using DocumentFormat.OpenXml.Spreadsheet;
 using System.Collections.Generic;
-using TajikKEA.DataSet;
-using TajikKEA.TFIDF;
+using TajikKEAHelper.DataSet;
+using TajikKEAHelper.TFIDF;
 
 namespace TajikKEAHelper
 {

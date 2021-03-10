@@ -3,9 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Threading.Tasks;
-using TajikKEA;
-using TajikKEA.Document;
+using TajikKEAHelper;
 using TajikKEAJsonContext;
 
 namespace TesterConsole
@@ -14,7 +12,11 @@ namespace TesterConsole
     {
         static void Main(string[] args)
         {
-            //TajikKEAJsonContext.TajikKEAJsonContext jsonContext = new TajikKEAJsonContext.TajikKEAJsonContext();
+            TajikKEAJsonContext.TajikKEAJsonContext jsonContext = new TajikKEAJsonContext.TajikKEAJsonContext();
+            KEAGlobal.InitiateKEAGlobal(jsonContext);
+            PDFHelper pDFHelper = new PDFHelper();
+            var text = pDFHelper.ReadPdfFile(@"C:\Users\komdil\Downloads\Documents\sadriddin-ajn-maorifparvar.pdf");
+
             //KEAGlobal.Logger.OnLog += Logger_OnLog;
             //KEAGlobal.InitiateKEAGlobal(jsonContext);
             //var file = new DirectoryInfo(@"C:/Users/komdil/Desktop/e").GetFiles().FirstOrDefault();

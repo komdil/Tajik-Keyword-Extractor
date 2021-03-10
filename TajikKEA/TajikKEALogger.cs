@@ -1,4 +1,4 @@
-﻿namespace TajikKEA
+﻿namespace TajikKEAHelper
 {
     public class TajikKEALogger
     {

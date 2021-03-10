@@ -48,15 +48,21 @@ namespace WordTool
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.tabPage3 = new System.Windows.Forms.TabPage();
-            this.button8 = new System.Windows.Forms.Button();
-            this.label5 = new System.Windows.Forms.Label();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.label6 = new System.Windows.Forms.Label();
             this.textBox4 = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.button8 = new System.Windows.Forms.Button();
+            this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.button9 = new System.Windows.Forms.Button();
+            this.listBox3 = new System.Windows.Forms.ListBox();
+            this.textBox5 = new System.Windows.Forms.TextBox();
+            this.button10 = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.tabPage3.SuspendLayout();
+            this.tabPage4.SuspendLayout();
             this.SuspendLayout();
             // 
             // button1
@@ -160,6 +166,7 @@ namespace WordTool
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
             this.tabControl1.Controls.Add(this.tabPage3);
+            this.tabControl1.Controls.Add(this.tabPage4);
             this.tabControl1.Location = new System.Drawing.Point(12, 12);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
@@ -258,31 +265,12 @@ namespace WordTool
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Табдил додани калима";
             // 
-            // button8
+            // textBox4
             // 
-            this.button8.Location = new System.Drawing.Point(250, 189);
-            this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(75, 23);
-            this.button8.TabIndex = 0;
-            this.button8.Text = "Сабт";
-            this.button8.UseVisualStyleBackColor = true;
-            this.button8.Click += new System.EventHandler(this.button8_Click);
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(250, 72);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(131, 15);
-            this.label5.TabIndex = 1;
-            this.label5.Text = "Калимаи ивазшаванда";
-            // 
-            // textBox3
-            // 
-            this.textBox3.Location = new System.Drawing.Point(250, 90);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(244, 23);
-            this.textBox3.TabIndex = 2;
+            this.textBox4.Location = new System.Drawing.Point(250, 148);
+            this.textBox4.Name = "textBox4";
+            this.textBox4.Size = new System.Drawing.Size(244, 23);
+            this.textBox4.TabIndex = 2;
             // 
             // label6
             // 
@@ -293,12 +281,82 @@ namespace WordTool
             this.label6.TabIndex = 1;
             this.label6.Text = "Калимаи ивазкунанда";
             // 
-            // textBox4
+            // textBox3
             // 
-            this.textBox4.Location = new System.Drawing.Point(250, 148);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(244, 23);
-            this.textBox4.TabIndex = 2;
+            this.textBox3.Location = new System.Drawing.Point(250, 90);
+            this.textBox3.Name = "textBox3";
+            this.textBox3.Size = new System.Drawing.Size(244, 23);
+            this.textBox3.TabIndex = 2;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(250, 72);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(131, 15);
+            this.label5.TabIndex = 1;
+            this.label5.Text = "Калимаи ивазшаванда";
+            // 
+            // button8
+            // 
+            this.button8.Location = new System.Drawing.Point(250, 189);
+            this.button8.Name = "button8";
+            this.button8.Size = new System.Drawing.Size(75, 23);
+            this.button8.TabIndex = 0;
+            this.button8.Text = "Сабт";
+            this.button8.UseVisualStyleBackColor = true;
+            this.button8.Click += new System.EventHandler(this.button8_Click);
+            // 
+            // tabPage4
+            // 
+            this.tabPage4.Controls.Add(this.button10);
+            this.tabPage4.Controls.Add(this.textBox5);
+            this.tabPage4.Controls.Add(this.listBox3);
+            this.tabPage4.Controls.Add(this.button9);
+            this.tabPage4.Location = new System.Drawing.Point(4, 24);
+            this.tabPage4.Name = "tabPage4";
+            this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage4.Size = new System.Drawing.Size(867, 598);
+            this.tabPage4.TabIndex = 3;
+            this.tabPage4.Text = "Категорияҳо";
+            this.tabPage4.UseVisualStyleBackColor = true;
+            // 
+            // button9
+            // 
+            this.button9.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.button9.Location = new System.Drawing.Point(760, 507);
+            this.button9.Name = "button9";
+            this.button9.Size = new System.Drawing.Size(92, 34);
+            this.button9.TabIndex = 0;
+            this.button9.Text = "Хориҷ";
+            this.button9.UseVisualStyleBackColor = false;
+            // 
+            // listBox3
+            // 
+            this.listBox3.FormattingEnabled = true;
+            this.listBox3.ItemHeight = 15;
+            this.listBox3.Location = new System.Drawing.Point(530, 32);
+            this.listBox3.Name = "listBox3";
+            this.listBox3.Size = new System.Drawing.Size(322, 469);
+            this.listBox3.TabIndex = 1;
+            // 
+            // textBox5
+            // 
+            this.textBox5.Location = new System.Drawing.Point(21, 32);
+            this.textBox5.Name = "textBox5";
+            this.textBox5.Size = new System.Drawing.Size(323, 23);
+            this.textBox5.TabIndex = 2;
+            // 
+            // button10
+            // 
+            this.button10.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.button10.Location = new System.Drawing.Point(21, 72);
+            this.button10.Name = "button10";
+            this.button10.Size = new System.Drawing.Size(213, 34);
+            this.button10.TabIndex = 3;
+            this.button10.Text = "Ҳамроҳ кардан";
+            this.button10.UseVisualStyleBackColor = false;
+            this.button10.Click += new System.EventHandler(this.button10_Click);
             // 
             // Form1
             // 
@@ -317,6 +375,8 @@ namespace WordTool
             this.tabPage2.PerformLayout();
             this.tabPage3.ResumeLayout(false);
             this.tabPage3.PerformLayout();
+            this.tabPage4.ResumeLayout(false);
+            this.tabPage4.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -347,6 +407,11 @@ namespace WordTool
         private System.Windows.Forms.TextBox textBox3;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Button button8;
+        private System.Windows.Forms.TabPage tabPage4;
+        private System.Windows.Forms.Button button10;
+        private System.Windows.Forms.TextBox textBox5;
+        private System.Windows.Forms.ListBox listBox3;
+        private System.Windows.Forms.Button button9;
     }
 }
 

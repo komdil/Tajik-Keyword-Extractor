@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using TajikKEA;
-using TajikKEA.DataSet;
+using TajikKEAHelper;
+using TajikKEAHelper.DataSet;
 
 namespace TajikKEAJsonContext
 {
@@ -35,7 +35,7 @@ namespace TajikKEAJsonContext
             Pronouns = JsonConvert.DeserializeObject<IEnumerable<TajikJsonWord>>(File.ReadAllText("Peshoyands.json")).Cast<IWordsDataSet>().ToList();
             Suffixes = JsonConvert.DeserializeObject<IEnumerable<TajikJsonWord>>(File.ReadAllText("Bandaks.json")).Cast<IWordsDataSet>().ToList();
             Words = JsonConvert.DeserializeObject<IEnumerable<TajikJsonWord>>(File.ReadAllText("WordsWithIDF.json")).Cast<IWordsDataSet>().ToList();
-            Replacements = JsonConvert.DeserializeObject<IEnumerable<ReplaceMent>>(File.ReadAllText("Replacements.json")).ToList();
+            Replacements = JsonConvert.DeserializeObject<IEnumerable<ReplaceMent>>(File.ReadAllText("Replacement.json")).ToList();
         }
     }
 }

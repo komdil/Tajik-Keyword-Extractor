@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
-using TajikKEA.Sentence;
+using TajikKEAHelper.Sentence;
 
-namespace TajikKEA.Document
+namespace TajikKEAHelper.Document
 {
     /// <summary/>
     public class DocumentManager

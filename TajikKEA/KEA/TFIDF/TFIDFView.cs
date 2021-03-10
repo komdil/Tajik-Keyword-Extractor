@@ -1,4 +1,4 @@
-﻿namespace TajikKEA.TFIDF
+﻿namespace TajikKEAHelper.TFIDF
 {
     public class TFIDFView
     {

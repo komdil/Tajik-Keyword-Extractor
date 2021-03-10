@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace TajikKEA
+namespace TajikKEAHelper
 {
     public static class Statics
     {

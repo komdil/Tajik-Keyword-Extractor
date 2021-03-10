@@ -4,8 +4,8 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
-using TajikKEA;
-using TajikKEA.TextNormilizer;
+using TajikKEAHelper;
+using TajikKEAHelper.TextNormilizer;
 using TajikKEAJsonContext;
 
 namespace WordTool
@@ -221,6 +221,12 @@ namespace WordTool
             {
                 MessageBox.Show("Хатогӣ дар вақти ҳамроҳкунӣ\n" + ex.Message);
             }
+        }
+
+        private void button10_Click(object sender, EventArgs e)
+        {
+            var newCategory = textBox5.Text;
+
         }
     }
 }

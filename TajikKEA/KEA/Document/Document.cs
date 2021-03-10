@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
-using TajikKEA.Sentence;
+using TajikKEAHelper.Sentence;
 
-namespace TajikKEA.Document
+namespace TajikKEAHelper.Document
 {
     /// <summary>
     /// RU: Текст или документ который содержит не менее одного предложения

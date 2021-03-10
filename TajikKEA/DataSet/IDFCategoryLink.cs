@@ -1,4 +1,4 @@
-﻿namespace TajikKEA.DataSet
+﻿namespace TajikKEAHelper.DataSet
 {
     public class IDFCategoryLink
     {

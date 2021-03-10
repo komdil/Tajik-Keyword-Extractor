@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace TajikKEA.DataSet
+namespace TajikKEAHelper.DataSet
 {
     /// <summary>
     /// Sctructure of one word

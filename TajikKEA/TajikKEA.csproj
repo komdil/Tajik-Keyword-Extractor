@@ -2,10 +2,26 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.1</TargetFramework>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Authors>Dilshod Komilov, Qosimov Abdunabi</Authors>
+    <Description>TajikKEA (Tajik Keyword Extraction Algorithm) is a server library to extract keywords from unknown tajik texts</Description>
+    <Copyright>Dilshod Komilov, Qosimov Abdunabi</Copyright>
+    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+    <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <OutputPath>..\Output\Model</OutputPath>
+    <OutputPath>..\Output\TajikKEA</OutputPath>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Update="LICENSE.md">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="LICENSE.md">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
+  </ItemGroup>
 
 </Project>

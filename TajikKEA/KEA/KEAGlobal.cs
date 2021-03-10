@@ -1,11 +1,11 @@
 ﻿using System;
-using TajikKEA.DataSet;
-using TajikKEA.Document;
-using TajikKEA.Sentence;
-using TajikKEA.TextNormilizer;
-using TajikKEA.TFIDF;
+using TajikKEAHelper.DataSet;
+using TajikKEAHelper.Document;
+using TajikKEAHelper.Sentence;
+using TajikKEAHelper.TextNormilizer;
+using TajikKEAHelper.TFIDF;
 
-namespace TajikKEA
+namespace TajikKEAHelper
 {
     public static class KEAGlobal
     {

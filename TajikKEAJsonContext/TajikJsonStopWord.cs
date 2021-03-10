@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using TajikKEA.DataSet;
+using TajikKEAHelper.DataSet;
 
 namespace TajikKEAJsonContext
 {

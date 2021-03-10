@@ -1,7 +1,7 @@
 ﻿
 using System.Collections.Generic;
 
-namespace TajikKEA.DataSet
+namespace TajikKEAHelper.DataSet
 {
     /// <summary>
     /// Context which contains tajik words

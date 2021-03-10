@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using TajikKEA.DataSet;
+using TajikKEAHelper.DataSet;
 
-namespace TajikKEA
+namespace TajikKEAHelper
 {
     public class KEAManager
     {

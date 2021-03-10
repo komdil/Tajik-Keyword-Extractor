@@ -2,9 +2,9 @@
 using iTextSharp.text.pdf.parser;
 using System.Linq;
 using System.Text;
-using TajikKEA.TextNormilizer;
+using TajikKEAHelper.TextNormilizer;
 
-namespace TajikKEA
+namespace TajikKEAHelper
 {
     public class PDFHelper
     {
