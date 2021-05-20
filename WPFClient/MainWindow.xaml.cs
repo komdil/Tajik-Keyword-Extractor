@@ -5,7 +5,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Windows;
 using System.Windows.Input;
-using TajikKEAHelper;
+using TajikKEA;
 
 namespace WPFClient
 {

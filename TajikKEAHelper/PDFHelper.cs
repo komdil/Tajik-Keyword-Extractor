@@ -2,7 +2,7 @@
 using iTextSharp.text.pdf.parser;
 using System.Linq;
 using System.Text;
-using TajikKEAHelper.TextNormilizer;
+using TajikKEA;
 
 namespace TajikKEAHelper
 {
@@ -18,7 +18,7 @@ namespace TajikKEAHelper
                 {
                     ITextExtractionStrategy its = new SimpleTextExtractionStrategy();
                     var bytes = reader.GetPageContent(page);
-                    var text = Encoding.Unicode.GetString(bytes);
+                    var text = Encoding.UTF8.GetString(bytes);
                     var s = PdfTextExtractor.GetTextFromPage(reader, page, its);
                     s = Encoding.UTF8.GetString(Encoding.Convert(Encoding.Default, Encoding.UTF8, Encoding.Default.GetBytes(s)));
                     s = ReplaceMent(s);
@@ -35,6 +35,7 @@ namespace TajikKEAHelper
              new ReplaceMent {ReplaceFrom="Ќ",ReplaceTo="Қ" },
              new ReplaceMent {ReplaceFrom="ў",ReplaceTo="ӯ" },
              new ReplaceMent {ReplaceFrom="Ў",ReplaceTo="Ӯ" },
+             new ReplaceMent {ReplaceFrom="ї",ReplaceTo="ӣ" },
              new ReplaceMent {ReplaceFrom="ї",ReplaceTo="ӣ" },
              new ReplaceMent {ReplaceFrom="ѓ",ReplaceTo="ғ" },
              new ReplaceMent {ReplaceFrom="Ѓ",ReplaceTo="Ғ" },

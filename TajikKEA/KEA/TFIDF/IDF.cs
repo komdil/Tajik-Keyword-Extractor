@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace TajikKEAHelper.TFIDF
+namespace TajikKEA.TFIDF
 {
     public class IDF
     {

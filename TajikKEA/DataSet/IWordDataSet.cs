@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace TajikKEAHelper.DataSet
+namespace TajikKEA.DataSet
 {
     /// <summary>
     /// Sctructure of one word
     /// </summary>
-    public interface IWordsDataSet
+    public interface IWordDataSet
     {
         /// <summary>
         /// Unique key of word
@@ -26,15 +26,15 @@ namespace TajikKEAHelper.DataSet
         /// <summary>
         /// IDF value of word
         /// RU: Важность слова
-        /// TJ: Муҳимияти калима
+        /// TJ: Муҳимияти калима дар умум
         /// </summary>
-        double IDF { get; set; }
+        double CommonIDF { get; set; }
 
         /// <summary>
         /// Category links
         /// RU: Важность слова в категории
         /// TJ: Муҳимияти калима вобаста аз категорияҳо
         /// </summary>
-        IEnumerable<IDFCategoryLink> IDFCategoryLinks { get; set; }
+        IList<IDFCategoryLink> IDFCategoryLinks { get; set; }
     }
 }

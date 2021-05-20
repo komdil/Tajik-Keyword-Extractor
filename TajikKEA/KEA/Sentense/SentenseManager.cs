@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
-using TajikKEAHelper.DataSet;
+using TajikKEA.DataSet;
 
-namespace TajikKEAHelper.Sentence
+namespace TajikKEA.Sentence
 {
     /// <summary/>
     public class SentenseManager : KEAManager

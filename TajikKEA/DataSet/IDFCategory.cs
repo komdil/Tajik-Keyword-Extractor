@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace TajikKEAHelper.DataSet
+namespace TajikKEA.DataSet
 {
     public class IDFCategory
     {

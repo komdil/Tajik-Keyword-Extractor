@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Text.RegularExpressions;
 
-namespace TajikKEAHelper.TextNormilizer
+namespace TajikKEA.TextNormilizer
 {
     public class TextnormilizerManager
     {

@@ -1,7 +1,7 @@
 ﻿
 using System.Collections.Generic;
 
-namespace TajikKEAHelper.DataSet
+namespace TajikKEA.DataSet
 {
     /// <summary>
     /// Context which contains tajik words
@@ -12,31 +12,31 @@ namespace TajikKEAHelper.DataSet
         /// RU: Слова
         /// TJ: Калимаҳо
         /// </summary>
-        IEnumerable<IWordsDataSet> Words { get; }
+        IEnumerable<IWordDataSet> Words { get; }
 
         /// <summary>
         /// RU: Суффиксы
         /// TJ: Бандакҳо
         /// </summary>
-        IEnumerable<IWordsDataSet> Suffixes { get; }
+        IEnumerable<IWordDataSet> Suffixes { get; }
 
         /// <summary>
         /// RU: Местоимение
         /// TJ: Ҷонишинҳо
         /// </summary>
-        IEnumerable<IWordsDataSet> Pronouns { get; }
+        IEnumerable<IWordDataSet> Pronouns { get; }
 
         /// <summary>
         /// RU: Предлоги
         /// TJ: Пешояндҳоо
         /// </summary>
-        IEnumerable<IWordsDataSet> Prepositions { get; }
+        IEnumerable<IWordDataSet> Prepositions { get; }
 
         /// <summary>
         /// RU: Стоп-Слова
         /// TJ: Стоп-Калимаҳо
         /// </summary>
-        IEnumerable<IWordsDataSet> StopWords { get; }
+        IEnumerable<IWordDataSet> StopWords { get; }
 
         /// <summary>
         /// RU: Изминение слов 

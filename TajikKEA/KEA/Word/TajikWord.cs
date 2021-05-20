@@ -1,4 +1,4 @@
-﻿namespace TajikKEAHelper
+﻿namespace TajikKEA
 {
     public class TajikWord
     {

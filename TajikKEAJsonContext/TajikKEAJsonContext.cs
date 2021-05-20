@@ -2,24 +2,22 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using TajikKEAHelper;
-using TajikKEAHelper.DataSet;
+using TajikKEA;
+using TajikKEA.DataSet;
 
 namespace TajikKEAJsonContext
 {
     public class TajikKEAJsonContext : IWordContext
     {
-        public IEnumerable<TajikJsonWord> AllWords { get; set; }
+        public IEnumerable<IWordDataSet> Suffixes { get; }
 
-        public IEnumerable<IWordsDataSet> Suffixes { get; }
+        public IEnumerable<IWordDataSet> Prepositions { get; }
 
-        public IEnumerable<IWordsDataSet> Prepositions { get; }
+        public IEnumerable<IWordDataSet> Pronouns { get; }
 
-        public IEnumerable<IWordsDataSet> Pronouns { get; }
+        public IEnumerable<IWordDataSet> StopWords { get; }
 
-        public IEnumerable<IWordsDataSet> StopWords { get; }
-
-        public IEnumerable<IWordsDataSet> Words { get; }
+        public IEnumerable<IWordDataSet> Words { get; }
 
         public IEnumerable<ReplaceMent> Replacements { get; }
 
@@ -29,13 +27,13 @@ namespace TajikKEAJsonContext
 
         public TajikKEAJsonContext()
         {
-            AllWords = JsonConvert.DeserializeObject<IEnumerable<TajikJsonWord>>(File.ReadAllText("dataset.json"));
-            StopWords = JsonConvert.DeserializeObject<IEnumerable<TajikJsonStopWord>>(File.ReadAllText("StopWords.json")).Cast<IWordsDataSet>().ToList();
-            Prepositions = JsonConvert.DeserializeObject<IEnumerable<TajikJsonWord>>(File.ReadAllText("Jonishins.json")).Cast<IWordsDataSet>().ToList();
-            Pronouns = JsonConvert.DeserializeObject<IEnumerable<TajikJsonWord>>(File.ReadAllText("Peshoyands.json")).Cast<IWordsDataSet>().ToList();
-            Suffixes = JsonConvert.DeserializeObject<IEnumerable<TajikJsonWord>>(File.ReadAllText("Bandaks.json")).Cast<IWordsDataSet>().ToList();
-            Words = JsonConvert.DeserializeObject<IEnumerable<TajikJsonWord>>(File.ReadAllText("WordsWithIDF.json")).Cast<IWordsDataSet>().ToList();
+            StopWords = JsonConvert.DeserializeObject<IEnumerable<TajikJsonStopWord>>(File.ReadAllText("StopWords.json")).Cast<IWordDataSet>().ToList();
+            Prepositions = JsonConvert.DeserializeObject<IEnumerable<TajikJsonWord>>(File.ReadAllText("Jonishins.json")).Cast<IWordDataSet>().ToList();
+            Pronouns = JsonConvert.DeserializeObject<IEnumerable<TajikJsonWord>>(File.ReadAllText("Peshoyands.json")).Cast<IWordDataSet>().ToList();
+            Suffixes = JsonConvert.DeserializeObject<IEnumerable<TajikJsonWord>>(File.ReadAllText("Bandaks.json")).Cast<IWordDataSet>().ToList();
+            Words = JsonConvert.DeserializeObject<IEnumerable<TajikJsonWord>>(File.ReadAllText("Words.json")).Cast<IWordDataSet>().ToList();
             Replacements = JsonConvert.DeserializeObject<IEnumerable<ReplaceMent>>(File.ReadAllText("Replacement.json")).ToList();
+            Categories = JsonConvert.DeserializeObject<IEnumerable<IDFCategory>>(File.ReadAllText("Categories.json")).ToList();
         }
     }
 }

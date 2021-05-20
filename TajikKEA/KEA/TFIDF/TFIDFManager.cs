@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 
-namespace TajikKEAHelper.TFIDF
+namespace TajikKEA.TFIDF
 {
     public class TFIDFManager
     {
@@ -33,7 +33,7 @@ namespace TajikKEAHelper.TFIDF
 
                 if (res != null)
                 {
-                    idfValue = res.IDF;
+                    idfValue = res.CommonIDF;
                 }
                 else
                 {

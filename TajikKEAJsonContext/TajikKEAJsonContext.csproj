@@ -20,8 +20,8 @@
     <None Update="Bandaks.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="dataset.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    <None Update="Categories.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Update="Jonishins.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -36,9 +36,6 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="Words.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="WordsWithIDF.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>

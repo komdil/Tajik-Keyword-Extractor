@@ -1,16 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
-using TajikKEAHelper.DataSet;
+using TajikKEA.DataSet;
 
 namespace TajikKEAJsonContext
 {
-    public class TajikJsonStopWord : IWordsDataSet
+    public class TajikJsonStopWord : IWordDataSet
     {
         public Guid Guid { get; set; }
         public string Content { get; set; }
         public string ContentInfo { get; set; }
-        public double IDF { get; set; }
-        public IEnumerable<IDFCategoryLink> IDFCategoryLinks { get; set; }
+        public double CommonIDF { get; set; }
+        public IList<IDFCategoryLink> IDFCategoryLinks { get; set; }
 
         public override string ToString()
         {

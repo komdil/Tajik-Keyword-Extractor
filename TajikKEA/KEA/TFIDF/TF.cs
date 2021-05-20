@@ -1,6 +1,6 @@
 ﻿using System.Linq;
 
-namespace TajikKEAHelper.TFIDF
+namespace TajikKEA.TFIDF
 {
     public class TF
     {

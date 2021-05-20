@@ -1,4 +1,4 @@
-﻿namespace TajikKEAHelper.TFIDF
+﻿namespace TajikKEA.TFIDF
 {
     public class TF_IDF
     {

@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 
-namespace TajikKEAHelper.Sentence
+namespace TajikKEA.Sentence
 {
     /// <summary>
     /// RU: Класс предложения

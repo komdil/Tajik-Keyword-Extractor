@@ -1,5 +1,5 @@
 ﻿
-namespace TajikKEAHelper
+namespace TajikKEA
 {
     /// <summary>
     /// RU: Изминение слов 

@@ -2,8 +2,8 @@
 using DocumentFormat.OpenXml.Packaging;
 using DocumentFormat.OpenXml.Spreadsheet;
 using System.Collections.Generic;
-using TajikKEAHelper.DataSet;
-using TajikKEAHelper.TFIDF;
+using TajikKEA.DataSet;
+using TajikKEA.TFIDF;
 
 namespace TajikKEAHelper
 {
@@ -83,7 +83,7 @@ namespace TajikKEAHelper
             }
         }
 
-        public static void ExtractResult(string excelPath, List<IWordsDataSet> results)
+        public static void ExtractResult(string excelPath, List<IWordDataSet> results)
         {
             using (SpreadsheetDocument xl = SpreadsheetDocument.Create(excelPath, SpreadsheetDocumentType.Workbook))
             {
@@ -115,7 +115,7 @@ namespace TajikKEAHelper
                     {
                         var result = results[i - 2];
                         AddCells(oxa, oxw, result.Content);
-                        AddCells(oxa, oxw, result.IDF.ToString());
+                        AddCells(oxa, oxw, result.CommonIDF.ToString());
                     }
                     // this is for Row
                     oxw.WriteEndElement();
