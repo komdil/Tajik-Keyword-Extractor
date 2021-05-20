@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using TajikKEAHelper;
+using TajikKEAHelper.Document;
+using TajikKEAHelper.TFIDF;
 using TajikKEAJsonContext;
 
 namespace TesterConsole
@@ -15,25 +17,29 @@ namespace TesterConsole
             TajikKEAJsonContext.TajikKEAJsonContext jsonContext = new TajikKEAJsonContext.TajikKEAJsonContext();
             KEAGlobal.InitiateKEAGlobal(jsonContext);
             PDFHelper pDFHelper = new PDFHelper();
-            var text = pDFHelper.ReadPdfFile(@"C:\Users\komdil\Downloads\Documents\sadriddin-ajn-maorifparvar.pdf");
 
-            //KEAGlobal.Logger.OnLog += Logger_OnLog;
-            //KEAGlobal.InitiateKEAGlobal(jsonContext);
-            //var file = new DirectoryInfo(@"C:/Users/komdil/Desktop/e").GetFiles().FirstOrDefault();
-            //var results = KEAGlobal.KEAManager.GetTFIDFFromFile(file);
-            //var c = results.Value.OrderByDescending(s => s.TF_IDF).ToList().Take(30).ToList();
-            //MSExcelHelper.ExtractResult("result2.csv", c);
+            var files = Directory.GetFiles(@"D:\Master Degree\TajikKEA\dataset\Физика");
+            var documents = new List<TajikDocument>();
 
-            //Task.Run(new Action(() =>
-            //{
-            //    var results = KEAGlobal.KEAManager.CalculateTFIDFFromFolder(@"D:\master degree\master\MAQOLA2\MainWork\Fizika");
-            //    foreach (var item in results)
-            //    {
-            //        var sheet = item.Value.OrderByDescending(s => s.TF_IDF).ToList().Take(30);
-            //        MSExcelHelper.ExtractResult($"{item.Key}.csv", sheet.ToList());
-            //    }
-            //    Console.WriteLine("Finished");
-            //}));
+            foreach (var file in files)
+            {
+                var text = pDFHelper.ReadPdfFile(file);
+                TajikDocument tajikDocument = new TajikDocument(text);
+                documents.Add(tajikDocument);
+            }
+
+            List<(double, string)> dec = new List<(double, string)>();
+            var words = new string[] { "энергия", "лаппиш", "басомад", "амплитуда", "ядро" };
+            foreach (var item in words)
+            {
+                TajikWord tajikWord = new TajikWord(item);
+                IDF iDF = new IDF(documents, tajikWord);
+                dec.Add((iDF.CalculateIDF(), item));
+            }
+
+            var five = dec.OrderByDescending(s => s.Item1).Take(5);
+
+
             Console.ReadLine();
         }
 

@@ -43,7 +43,7 @@ namespace TajikKEAHelper
              new ReplaceMent {ReplaceFrom="њ",ReplaceTo="ҳ" },
              new ReplaceMent {ReplaceFrom="Њ",ReplaceTo="Ҳ" },
         };
-        public string ReplaceMent(string text)
+        string ReplaceMent(string text)
         {
             foreach (var item in replaceMents.Where(s => s.ReplaceFrom != null))
             {
