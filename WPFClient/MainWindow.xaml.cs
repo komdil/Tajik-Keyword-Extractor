@@ -2,7 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
 using System.Windows;
 using System.Windows.Input;
 using TajikKEA;
@@ -16,7 +15,7 @@ namespace WPFClient
     {
         public MainWindow()
         {
-            TajikKEAJsonContext.TajikKEAJsonContext jsonContext = new TajikKEAJsonContext.TajikKEAJsonContext();
+            TajikKEAContext jsonContext = new TajikKEAContext();
             KEAGlobal.InitiateKEAGlobal(jsonContext);
             InitializeComponent();
             DataContext = this;
@@ -48,20 +47,6 @@ namespace WPFClient
             if (InputText == "")
                 return;
             Words = KEAGlobal.KEAManager.GetKeywords(InputText, 20);
-        }
-
-        List<string> GetListFromText(string inputText)
-        {
-            List<string> vs = new List<string>();
-            foreach (var item in inputText.Split(' '))
-            {
-                if (item != "," && item != "" && item != " " && item != "-" && !int.TryParse(item, out int res))
-                {
-                    vs.Add(item.Replace("!", "").Replace(".", "").Replace(",", ""));
-                }
-            }
-
-            return vs.GroupBy(a => a).Select(f => f.FirstOrDefault()).ToList();
         }
 
         public string InputText { get; set; }

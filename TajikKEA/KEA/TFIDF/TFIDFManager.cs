@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using TajikKEA.DataSet;
 
 namespace TajikKEA.TFIDF
 {
@@ -20,11 +21,10 @@ namespace TajikKEA.TFIDF
             return tFIDFViews;
         }
 
-        public List<TFIDFView> CalculateTFIDFWithIDF(List<Document.TajikDocument> documentsDataSet, Document.TajikDocument documentToCalculate)
+        public List<TFIDFView> CalculateTFIDFWithIDF(Document.TajikDocument documentToCalculate, IDFCategory category = null)
         {
             List<TFIDFView> tFIDFViews = new List<TFIDFView>();
             var wordsOfDocumentToCalculate = documentToCalculate.Sentences.SelectMany(s => s.Words).ToList();
-
             foreach (var wordToCalculate in wordsOfDocumentToCalculate.GroupBy(s => s.Value).Select(s => s.FirstOrDefault()))
             {
                 var tFValue = CalCulateTF(wordToCalculate, documentToCalculate);
@@ -33,10 +33,26 @@ namespace TajikKEA.TFIDF
 
                 if (res != null)
                 {
-                    idfValue = res.CommonIDF;
+                    if (category != null)
+                    {
+                        var categoryLink = res.IDFCategoryLinks?.FirstOrDefault(s => s.Category?.Guid == category.Guid);
+                        if (categoryLink != null && categoryLink.IDF > 0)
+                        {
+                            idfValue = categoryLink.IDF;
+                        }
+                        else
+                        {
+                            idfValue = res.CommonIDF;
+                        }
+                    }
+                    else
+                    {
+                        idfValue = res.CommonIDF;
+                    }
                 }
                 else
                 {
+                    List<Document.TajikDocument> documentsDataSet = new List<Document.TajikDocument> { documentToCalculate };
                     idfValue = CalCulateIDF(documentsDataSet, wordToCalculate);
                 }
                 tFIDFViews.Add(CalculateTFIDF(wordToCalculate.Value, idfValue, tFValue));

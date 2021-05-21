@@ -31,7 +31,7 @@ namespace TajikKEA.Sentence
         /// </summary>
         public void NormalizeWords(IEnumerable<TajikWord> words, TajikSentence sentence)
         {
-            foreach (var word in words)
+            foreach (var word in words.ToList())
             {
                 ShakliJam(word);
                 Ishorakuni(word);
@@ -174,7 +174,8 @@ namespace TajikKEA.Sentence
             if (!Context.Words.Any(s => s.Content == word) ||
                 Context.Suffixes.Any(s => s.Content == word) ||
                 Context.Prepositions.Any(s => s.Content == word) ||
-                Context.Pronouns.Any(s => s.Content == word))
+                Context.Pronouns.Any(s => s.Content == word) ||
+                Context.StopWords.Any(s => s.Content == word))
             {
                 return true;
             }

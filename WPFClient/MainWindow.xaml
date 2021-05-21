@@ -19,8 +19,8 @@
             <TextBox  TextWrapping="Wrap" AcceptsReturn="True" AcceptsTab="True" SpellCheck.IsEnabled="True" Text="{Binding InputText}"/>
         </DockPanel>
         <ListBox Margin="10" Grid.Column="2" ItemsSource="{Binding Words}">
-           
+
         </ListBox>
-        
+
     </Grid>
 </Window>

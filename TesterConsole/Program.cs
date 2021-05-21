@@ -15,7 +15,7 @@ namespace TesterConsole
     {
         static void Main(string[] args)
         {
-            TajikKEAJsonContext.TajikKEAJsonContext jsonContext = new TajikKEAJsonContext.TajikKEAJsonContext();
+            TajikKEAJsonContext.TajikKEAContext jsonContext = new TajikKEAJsonContext.TajikKEAContext();
             KEAGlobal.InitiateKEAGlobal(jsonContext);
             PDFHelper pDFHelper = new PDFHelper();
 

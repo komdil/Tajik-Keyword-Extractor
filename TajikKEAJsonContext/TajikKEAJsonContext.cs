@@ -7,7 +7,7 @@ using TajikKEA.DataSet;
 
 namespace TajikKEAJsonContext
 {
-    public class TajikKEAJsonContext : IWordContext
+    public class TajikKEAContext : IWordContext
     {
         public IEnumerable<IWordDataSet> Suffixes { get; }
 
@@ -25,7 +25,7 @@ namespace TajikKEAJsonContext
 
         public IEnumerable<IDFCategoryLink> IDFCategories { get; }
 
-        public TajikKEAJsonContext()
+        public TajikKEAContext()
         {
             StopWords = JsonConvert.DeserializeObject<IEnumerable<TajikJsonStopWord>>(File.ReadAllText("StopWords.json")).Cast<IWordDataSet>().ToList();
             Prepositions = JsonConvert.DeserializeObject<IEnumerable<TajikJsonWord>>(File.ReadAllText("Jonishins.json")).Cast<IWordDataSet>().ToList();
