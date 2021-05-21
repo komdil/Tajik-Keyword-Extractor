@@ -5,6 +5,12 @@
     <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
     <SignAssembly>true</SignAssembly>
     <AssemblyOriginatorKeyFile>TajikKEAPublic.snk</AssemblyOriginatorKeyFile>
+    <Authors>Dilshod Komilov, Qosimov Abdunabi</Authors>
+    <Product>TajikKEA JsonContext</Product>
+    <Description>TajikKEAJsonContext is dataset context for TajikKEA package</Description>
+    <Copyright>Dilshod Komilov, Qosimov Abdunabi</Copyright>
+    <RepositoryUrl>https://github.com/komdil/Tajik-Keyword-Extractor</RepositoryUrl>
+    <PackageTags>KEA, TF, IDF, Language, Text</PackageTags>
   </PropertyGroup>
 
   <ItemGroup>
