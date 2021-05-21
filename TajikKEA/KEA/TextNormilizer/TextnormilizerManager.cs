@@ -9,6 +9,8 @@ namespace TajikKEA.TextNormilizer
         readonly string[] itemsToEmptySpace = new string[] { "\n", "–", ";" };
         public string RemoveUnnassesarySpaces(string text)
         {
+            if (text == null)
+                return string.Empty;
             text = text.ToLower();
             bool preserveTabs = false;
             text = text.Trim();

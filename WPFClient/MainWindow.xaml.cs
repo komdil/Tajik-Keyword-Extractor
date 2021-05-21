@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Windows;
 using System.Windows.Input;
 using TajikKEA;
+using System.Threading.Tasks;
 
 namespace WPFClient
 {
@@ -46,7 +47,25 @@ namespace WPFClient
         {
             if (InputText == "")
                 return;
-            Words = KEAGlobal.KEAManager.GetKeywords(InputText, 20);
+            int keywordCount;
+            int.TryParse(CountOfKeywords.Text, out keywordCount);
+            if (keywordCount == 0)
+                keywordCount = 10;
+
+            Task.Run(new Action(() =>
+            {
+                CalculateButton.Dispatcher.Invoke(new Action(() =>
+                {
+                    CalculateButton.Content = "Ҳисоб...";
+                    CalculateButton.IsEnabled = false;
+                }));
+                Words = KEAGlobal.KEAManager.GetKeywords(InputText, keywordCount);
+                CalculateButton.Dispatcher.Invoke(new Action(() =>
+                {
+                    CalculateButton.Content = "Ҳисоб";
+                    CalculateButton.IsEnabled = true;
+                }));
+            }));
         }
 
         public string InputText { get; set; }

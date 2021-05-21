@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPFClient"
         mc:Ignorable="d"
+        Margin="10"
         Title="MainWindow" Height="450" Width="800"
         WindowState="Maximized"
         >
@@ -14,13 +15,20 @@
             <ColumnDefinition/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <DockPanel Margin="10" Grid.ColumnSpan="2">
-            <Button DockPanel.Dock="Bottom"  Command="{Binding Calculate}" Content="Ҳисоб" Padding="10" />
-            <TextBox  TextWrapping="Wrap" AcceptsReturn="True" AcceptsTab="True" SpellCheck.IsEnabled="True" Text="{Binding InputText}"/>
+        <DockPanel  Margin="10" Grid.ColumnSpan="2">
+            <Button Margin="5" DockPanel.Dock="Bottom"  Command="{Binding Calculate}" Content="Ҳисоб" Padding="10" Name="CalculateButton"/>
+            <DockPanel DockPanel.Dock="Top" Margin="5">
+                <TextBox MinWidth="40" DockPanel.Dock="Right" x:Name="CountOfKeywords" />
+                <Label Content="Миқдори калид-калима" DockPanel.Dock="Right"/>
+                <Label Content="Матни ношинос" />
+            </DockPanel>
+
+            <TextBox Margin="5" TextWrapping="Wrap" AcceptsReturn="True" AcceptsTab="True" SpellCheck.IsEnabled="True" Text="{Binding InputText}"/>
         </DockPanel>
-        <ListBox Margin="10" Grid.Column="2" ItemsSource="{Binding Words}">
-
-        </ListBox>
-
+        <DockPanel Margin="10" Grid.Column="2" >
+            <Label Content="Калимаҳои калидӣ" DockPanel.Dock="Top"/>
+            <ListBox ItemsSource="{Binding Words}">
+            </ListBox>
+        </DockPanel>
     </Grid>
 </Window>
