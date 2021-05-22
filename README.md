@@ -32,9 +32,9 @@ _______________________________
 _____________________________________________
 
 # Истифодабарии модул
-1. Насб кардани модул аз Nuget:
+1. Насб кардани модул аз Nuget: https://www.nuget.org/packages/TajikKEA/
 
-2. Насб кардани базаи маълумот. Масалан лоиҳаи <a href="https://github.com/komdil/Tajik-Keyword-Extractor/tree/master/TajikKEAJsonContext">TajikKEAJsonContext</a>
+2. Насб кардани базаи маълумот. Масалан лоиҳаи <a href="https://www.nuget.org/packages/TajikKEAJsonContext/">TajikKEAJsonContext</a>
 
 3. Пеш аз истифода бурдан бояд танзимоти базаи маълумот насб карда шавад:
 ```
